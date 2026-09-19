@@ -151,9 +151,9 @@ if(el)el.classList.add('active');
 function doLogin(){showPage('home',document.querySelectorAll('.bottom div')[0]);toast('Login success 7% LIVE');}
 function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2000);}
 function copyRef(){navigator.clipboard.writeText(document.getElementById('refLink').value);toast('Copied to clipboard.');}
-function shareWA(){window.open('https://wa.me/?text='+encodeURIComponent('Join Skylight AI 7% DAILY: '+document.getElementById('refLink').value));}
-function openWA(){window.open('https://wa.me/256793814204');}
-function buyMach(price,name){
+function shareWA(){window. openWA(){window.open('https://chat.whatsapp.com/Dm2fLxKZADoLJCAMwLjnYO');}('https://wa.me/?text='+encodeURIComponent('Join Skylight AI 7% DAILY: '+document.getElementById('refLink').value));}
+
+function buyMach(prifunction openWA(){window.open('https://chat.whatsapp.com/Dm2fLxKZADoLJCAMwLjnYO');}ce,name){
 if(bal<price){toast('Low balance, Deposit first');showPage('wallet');return;}
 bal-=price;localStorage.setItem('bal',bal);document.getElementById('balance').innerText=bal;
 toast(name+' Rented! 7% daily started');
