@@ -1,40 +1,10 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Skylight AI Company - Capital</title>
-<style>
-body{font-family:Arial;background:#0a0a23;color:white;text-align:center;padding:20px}
-.box{background:white;color:black;padding:20px;border-radius:12px;max-width:400px;margin:20px auto}
-input{width:90%;padding:12px;margin:10px 0;border:1px solid #ccc;border-radius:8px}
-button{background:#6c5ce7;color:white;padding:12px 20px;border:none;border-radius:8px;width:95%;font-size:16px}
-a{color:#6c5ce7;font-weight:bold;word-break:break-all}
-</style>
-</head>
-<body>
-<h1>💡 SKYLIGHT AI COMPANY</h1>
-<h3>Capital Referral Page</h3>
-
-<div class="box">
-<p>Your Referral Link:</p>
-<p id="link"></p>
-<button onclick="copyLink()">Copy Link</button>
-<hr>
-<p>Ref ID: <b id="ref"></b></p>
-<p>Share and earn capital!</p>
-</div>
-
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Redirecting...</title>
 <script>
-const params = new URLSearchParams(window.location.search);
-let ref = params.get('ref') || '0779434443';
-document.getElementById('ref').innerText = ref;
-let url = window.location.origin + window.location.pathname + '?ref=' + ref;
-document.getElementById('link').innerHTML = '<a href="'+url+'">'+url+'</a>';
-function copyLink(){
- navigator.clipboard.writeText(url);
- alert('Link Copied: ' + url);
-}
+  const ref = new URLSearchParams(location.search).get('ref') || '0779434443';
+  // Redirect to full dashboard with same ref
+  location.href = './?ref=' + ref;
 </script>
-</body>
-</html>
+</head><body style="background:#0a1220;color:#fff;padding:20px;font-family:system-ui">
+Copying link... Redirecting to Skylight AI Dashboard 7% LIVE...
+</body></html>
