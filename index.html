@@ -1,46 +1,31 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SKYLIGHT</title><style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#070e1f;color:#fff;padding-bottom:80px}
-.header{padding:15px;text-align:center;background:#070e1f;border-bottom:1px solid #1a2f5a}.logo{font-weight:900;color:#00e5ff}.logo span{color:gold}
-.card{background:#111f3d;border-radius:16px;padding:20px;margin:12px;border:1px solid #1e355f}
-.btn{width:100%;padding:13px;border-radius:12px;border:none;font-weight:800;cursor:pointer;margin:6px 0}.blue{background:gold;color:#000}.red{background:#ff3b30;color:#fff}.gray{background:#1e355f;color:#fff}
-.page{display:none}.page.active{display:block}
-.input{width:100%;padding:13px;background:#0a1930;border:1px solid #1e355f;border-radius:12px;color:#fff;margin:8px 0}
-.mach-card{display:flex;margin:8px 10px;background:#111f3d;border-radius:14px;overflow:hidden;border:1px solid #2a4a7a}
-.mach-img{width:115px;height:100px;background:#000;position:relative;overflow:hidden}.mach-img img{width:100%;height:100%;object-fit:cover}
-.badge{position:absolute;top:5px;left:5px;background:gold;color:#000;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:900}.level{position:absolute;top:5px;right:5px;background:#ff4400;color:#fff;padding:2px 6px;border-radius:8px;font-size:9px;font-weight:900}
-.core{position:absolute;bottom:7px;right:7px;width:14px;height:14px;background:#00e5ff;border-radius:50%;box-shadow:0 0 10px #00e5ff;animation:pulse 1s infinite}@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}.mach-info{padding:9px;flex:1;font-size:11px}.buy{padding:6px 12px;border-radius:8px;border:none;font-weight:800;margin:3px 2px;font-size:11px}
-.tab{padding:9px 12px;color:#8aa0c6;display:inline-block;cursor:pointer;font-size:13px}.tab.active{color:gold;border-bottom:2px solid gold}.bottom{position:fixed;bottom:0;left:0;right:0;background:#0e1d38;display:flex;justify-content:space-around;padding:9px 0 7px;border-top:1px solid #1e355f;z-index:99}.bottom div{flex:1;text-align:center;font-size:10px;color:#8aa0c6;cursor:pointer}.bottom div b{display:block;font-size:17px}.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1a2f5a;padding:12px 22px;border-radius:25px;display:none;z-index:999;max-width:88%;text-align:center}
-.profile-pic{width:90px;height:90px;border-radius:50%;background:#0a1930;border:3px solid gold;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:35px;overflow:hidden;position:relative;cursor:pointer}
-.profile-pic img{width:100%;height:100%;object-fit:cover}.edit-badge{position:absolute;bottom:0;right:0;background:gold;color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;border:2px solid #111f3d}
-</style></head><body>
-<div class="header"><div class="logo">SKYLIGHT <span>AI COMPANY</span></div></div>
-<div id="p-login" class="page active"><div class="card" style="margin-top:50px"><h2 style="text-align:center;color:#fff">Welcome Back</h2><p style="text-align:center;color:#8aa0c6;font-size:13px;margin:8px 0 20px">Login to continue</p><input class="input" id="loginPhone" placeholder="Enter phone number" value="0779434443"><input class="input" id="loginPwd" type="password" placeholder="Login password" value="123456"><button class="btn blue" style="margin-top:10px" onclick="login()">LOGIN</button></div></div>
-<div id="p-home" class="page"><div class="card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="background:#0d1a33;padding:12px;border-radius:12px"><div style="color:#8aa0c6;font-size:12px">Wallet</div><b id="bh">0 UGX</b></div><div style="background:rgba(0,255,136,0.1);padding:12px;border-radius:12px;border:1px solid #00ff88"><div style="color:#8aa0c6;font-size:12px">Daily</div><b id="dh" style="color:#2eff8a">0 UGX</b></div></div><button class="btn blue" style="margin-top:12px" onclick="receiveAll()">Receive All - <span id="dh2">0 UGX</span></button></div></div>
-<div id="p-machines" class="page"><div style="display:flex;overflow-x:auto;padding:10px 10px 0;gap:4px;white-space:nowrap;background:#070e1f;position:sticky;top:48px;z-index:10;border-bottom:1px solid #1a2f5a"><span class="tab active" id="ta" onclick="filterM('all')">All 24</span><span class="tab" id="tb" onclick="filterM('m1')">M1 (6)</span><span class="tab" id="tc" onclick="filterM('m2')">M2 (6)</span><span class="tab" id="td" onclick="filterM('m3')">M3 (6)</span><span class="tab" id="te" onclick="filterM('sky')">SKY (6)</span></div><div id="mc"></div></div>
-<div id="p-wallet" class="page"><div class="card"><h2>Wallet: <span id="bw">0</span> UGX</h2><div style="color:#8aa0c6;font-size:12px">Daily: <span id="dw">0</span> | Active: <span id="ac">0</span>/24</div><br><button class="btn" style="background:#ffcc00;color:#000" onclick="dep()">Deposit</button><br><br><button class="btn gray" onclick="wit()">Withdraw</button></div></div>
-<div id="p-group" class="page"><div class="card"><h2>My Team</h2><br><button class="btn blue" onclick="toast('Invite copied!')">Copy Invite</button></div></div>
-<div id="p-rules" class="page"><div class="card"><h2>Rules</h2><div style="font-size:13px;color:#aab9d6;line-height:1.7">- 4 types x 6 levels<br>- 6% daily<br>- Min 1,000 UGX</div></div></div>
-<div id="p-set" class="page">
-<div class="card" style="text-align:center">
-<div class="profile-pic" onclick="changePic()"><span id="picIcon">👤</span><img id="picImg" style="display:none"><div class="edit-badge">✏️</div></div>
-<b id="setPhone">0779434443</b><div style="color:#8aa0c6;font-size:12px;margin:4px 0">Wallet: <span id="sb">0 UGX</span></div>
-<input type="file" id="picInput" accept="image/*" style="display:none" onchange="uploadPic(event)">
+<!-- FOUR FOUNDERS - US TEAM -->
+<div class="card" style="border:1px solid gold">
+<h3 style="color:gold">👑 Four Founders - USA</h3>
+<div class="sub" style="margin-bottom:12px">Silicon Valley visionaries behind SKYLIGHT AI</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+<div style="background:#0a1930;padding:12px;border-radius:12px;text-align:center;border:1px solid #1e355f">
+<div style="width:60px;height:60px;background:linear-gradient(135deg,gold,#ffaa00);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:24px">👨‍💼</div>
+<b style="font-size:12px;color:gold">Michael J.</b><br><span style="font-size:10px;color:#8aa0c6">CEO & Founder</span><br><span style="font-size:9px;color:#2eff8a">● San Francisco</span>
 </div>
-<div class="card"><h3 style="margin-bottom:10px">🔒 Change Password</h3><input class="input" id="oldPwd" type="password" placeholder="Old password"><input class="input" id="newPwd" type="password" placeholder="New password"><input class="input" id="confirmPwd" type="password" placeholder="Confirm new password"><button class="btn blue" onclick="changePassword()">Change Password</button></div>
-<div class="card"><h3 style="margin-bottom:10px">⚙️ Actions</h3><button class="btn gray" onclick="clearCache()">🧹 Clear Cache</button><button class="btn red" onclick="logout()">🚪 Logout</button><button class="btn" style="background:#ff3b30;color:#fff;margin-top:10px" onclick="if(confirm('Reset all?')){localStorage.clear();location.reload()}">❌ Reset All Data</button></div>
+
+<div style="background:#0a1930;padding:12px;border-radius:12px;text-align:center;border:1px solid #1e355f">
+<div style="width:60px;height:60px;background:linear-gradient(135deg,#00aaff,#0066cc);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:24px">👨‍💻</div>
+<b style="font-size:12px;color:#00aaff">Alex Carter</b><br><span style="font-size:10px;color:#8aa0c6">CTO & Co-Founder</span><br><span style="font-size:9px;color:#2eff8a">● MIT, Stanford</span>
 </div>
-<div class="bottom"><div onclick="goHome()"><b>🏠</b>Home</div><div onclick="showP('p-machines')"><b>⚙️</b>Machines</div><div onclick="showP('p-wallet')"><b>💰</b>Wallet</div><div onclick="showP('p-group')"><b>👥</b>Group</div><div onclick="showP('p-rules')"><b>📜</b>Rules</div><div onclick="showP('p-set')"><b>⚙️</b>Set</div></div>
-<div class="toast" id="toast"></div>
-<script>
-let TYPES={m1:{img:"https://i.ibb.co/GvswLvDp/M1.jpg",color:"gold",prices:[2000,5000,10000,20000,40000,80000],dailies:[120,300,600,1200,2400,4800]},m2:{img:"https://i.ibb.co/LdnKTDWp/M2.jpg",color:"#00aaff",prices:[2000,5000,10000,20000,40000,80000],dailies:[120,300,600,1200,2400,4800]},m3:{img:"https://i.ibb.co/xS5sQ5v6/M3.jpg",color:"#00ff88",prices:[3000,6000,12000,25000,50000,100000],dailies:[180,360,720,1500,3000,6000]},sky:{img:"https://i.ibb.co/8nWs2SD4/Sky-machine.jpg",color:"#cc66ff",prices:[4000,8000,15000,30000,60000,120000],dailies:[240,480,900,1800,3600,7200]}};
-let bal=parseInt(localStorage.getItem('skylight_bal')||0);let daily=parseInt(localStorage.getItem('skylight_daily')||0);let owned={};try{owned=JSON.parse(localStorage.getItem('skylight_owned')||'{}')}catch{}
-function upd(){let b=bal.toLocaleString()+' UGX';['bh','bw','sb'].forEach(id=>{let e=document.getElementById(id);if(e)e.innerText=b});['dh','dw','dh2'].forEach(id=>{let e=document.getElementById(id);if(e)e.innerText=daily.toLocaleString()+' UGX'});let c=Object.keys(owned).length;let e=document.getElementById('ac');if(e)e.innerText=c;localStorage.setItem('skylight_bal',bal);localStorage.setItem('skylight_daily',daily);let ph=localStorage.getItem('skylight_phone')||'0779434443';let ep=document.getElementById('setPhone');if(ep)ep.innerText=ph;}
-function hide(){document.querySelectorAll('.page').forEach(p=>p.style.display='none')}function goHome(){hide();document.getElementById('p-home').style.display='block';upd()}function showP(id){hide();document.getElementById(id).style.display='block';upd();if(id==='p-set')loadPic()}
-function login(){let ph=document.getElementById('loginPhone').value;localStorage.setItem('skylight_phone',ph);hide();document.getElementById('p-machines').style.display='block';build();toast('Welcome '+ph)}function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',3000)}
-function filterM(c){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));let m={all:'ta',m1:'tb',m2:'tc',m3:'td',sky:'te'};let el=document.getElementById(m[c]);if(el)el.classList.add('active');document.querySelectorAll('.mach-card').forEach(card=>{card.style.display=c==='all'||card.dataset.cat===c?'flex':'none'})}
-function buy(n,d,p){if(owned[n]){toast('Already owned');return}if(bal<p){toast('Need '+p+' UGX');return}bal-=p;owned[n]=d;daily+=d;localStorage.setItem('skylight_owned',JSON.stringify(owned));upd();toast('Rented '+n)}function rec(n,a){if(!owned[n]){toast('Buy first');return}bal+=a;localStorage.setItem('skylight_bal',bal);upd();toast('Received '+a)}function receiveAll(){if(daily===0){toast('No machines!');return}bal+=daily;localStorage.setItem('skylight_bal',bal);upd();toast('Received ALL '+daily)}function dep(){let a=prompt('Deposit:');let v=parseInt(a||0);if(v>0){bal+=v;upd();toast('Deposited '+v)}}function wit(){let a=prompt('Withdraw:');let v=parseInt(a||0);if(v>bal){toast('No balance');return}if(v>0){bal-=v;upd();toast('Withdraw '+v)}}
-function build(){let c=document.getElementById('mc');let h='';for(let type in TYPES){let t=TYPES[type];for(let i=0;i<6;i++){let name=type.toUpperCase()+(i+1);let price=t.prices[i];let daily=t.dailies[i];h+=`<div class="mach-card" data-cat="${type}" style="border-color:${t.color}"><div class="mach-img"><img src="${t.img}"><span class="badge" style="background:${t.color};color:${t.color==='gold'?'#000':'#fff'}">${type.toUpperCase()}</span><span class="level">L${i+1}</span><div class="core"></div></div><div class="mach-info"><b style="color:${t.color}">${name} L${i+1}</b><br>Price:${price} Daily:<b style="color:#2eff8a">${daily}</b><br><button class="buy" style="background:${t.color};color:${t.color==='gold'?'#000':'#fff'}" onclick="buy('${name}',${daily},${price})">${owned[name]?'Owned':'Buy'}</button><button class="buy" style="background:#00cc66;color:#fff" onclick="rec('${name}',${daily})">Receive</button></div></div>`}}c.innerHTML=h;}
-function changePic(){document.getElementById('picInput').click()}function uploadPic(e){let file=e.target.files[0];if(!file)return;let reader=new FileReader();reader.onload=function(ev){let data=ev.target.result;localStorage.setItem('skylight_pic',data);loadPic();toast('Profile pic updated!')};reader.readAsDataURL(file)}function loadPic(){let data=localStorage.getItem('skylight_pic');if(data){document.getElementById('picImg').src=data;document.getElementById('picImg').style.display='block';document.getElementById('picIcon').style.display='none'}}
-function changePassword(){let oldP=document.getElementById('oldPwd').value;let newP=document.getElementById('newPwd').value;let conf=document.getElementById('confirmPwd').value;if(!oldP||!newP||!conf){toast('Fill all fields');return}if(newP!==conf){toast('Passwords not match');return}if(newP.length<4){toast('Min 4 chars');return}localStorage.setItem('skylight_pwd',newP);document.getElementById('oldPwd').value='';document.getElementById('newPwd').value='';document.getElementById('confirmPwd').value='';toast('Password changed!')}
-function clearCache(){if(confirm('Clear cache? Keeps wallet.')){localStorage.removeItem('skylight_pic');location.reload();toast('Cache cleared!')}}function logout(){if(confirm('Logout?')){hide();document.getElementById('p-login').style.display='block';toast('Logged out')}}upd();loadPic();
-</script></body></html>
+
+<div style="background:#0a1930;padding:12px;border-radius:12px;text-align:center;border:1px solid #1e355f">
+<div style="width:60px;height:60px;background:linear-gradient(135deg,#00ff88,#00cc66);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:24px">👨‍💼</div>
+<b style="font-size:12px;color:#00ff88">David Smith</b><br><span style="font-size:10px;color:#8aa0c6">COO & Co-Founder</span><br><span style="font-size:9px;color:#2eff8a">● New York</span>
+</div>
+
+<div style="background:#0a1930;padding:12px;border-radius:12px;text-align:center;border:1px solid #1e355f">
+<div style="width:60px;height:60px;background:linear-gradient(135deg,#cc66ff,#9933ff);border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:24px">👩‍💼</div>
+<b style="font-size:12px;color:#cc66ff">Sarah Wilson</b><br><span style="font-size:10px;color:#8aa0c6">CFO & Co-Founder</span><br><span style="font-size:9px;color:#2eff8a">● Harvard MBA</span>
+</div>
+
+</div>
+<div style="margin-top:12px;padding:10px;background:rgba(255,215,0,0.1);border-radius:8px;border:1px solid rgba(255,215,0,0.2);font-size:11px;color:#ffdd44;text-align:center">
+🚀 Founded in Silicon Valley 2024 • AI Mining Revolution 🇺🇸
+</div>
+</div>
