@@ -1,46 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SKYLIGHT AI</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a1930;color:#fff;font-family:Arial;padding-bottom:80px}
+.card{background:#fff;color:#000;border-radius:14px;padding:14px;margin:10px;border:1px solid #ddd}
+.btn{width:100%;padding:12px;border:none;border-radius:10px;font-weight:800;cursor:pointer}
+.sub{font-size:11px;color:#888}
+.page{display:none;padding:10px}.page.active{display:block}
+.nav{position:fixed;bottom:0;left:0;right:0;background:#0a1930;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 0;border-top:1px solid #1e355f}
+.nav button{background:none;border:none;color:#8aa0c6;font-size:10px}.nav button.active{color:gold}
+.nav span{font-size:18px;display:block}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:8px 0}
+</style>
+</head>
+<body>
+
+<div style="padding:14px;background:#0a1930;position:sticky;top:0;z-index:10;display:flex;justify-content:space-between">
+<b style="color:gold">⚡ SKYLIGHT AI</b><span style="font-size:12px">🇺🇸 USA</span>
+</div>
+
+<!-- HOME PAGE -->
 <div id="p-home" class="page active">
 
-<!-- WALLET -->
-<div class="card">
+<!-- WALLET TOP -->
+<div class="card" style="background:linear-gradient(135deg,#0a1930,#1a3a6a);color:#fff;border:none">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-<div style="background:#0d1a33;padding:12px;border-radius:12px"><div class="sub">Wallet</div><b id="bh">0 UGX</b></div>
-<div style="background:rgba(0,255,136,0.1);padding:12px;border-radius:12px;border:1px solid #00ff88"><div class="sub">Daily</div><b id="dh" style="color:#2eff8a">0 UGX</b></div>
+<div><div class="sub" style="color:#8aa0c6">Wallet Balance</div><b id="bh" style="font-size:18px;color:#fff">0 UGX</b></div>
+<div style="text-align:right"><div class="sub" style="color:#8aa0c6">Daily Income</div><b id="dh" style="font-size:18px;color:#2eff8a">0 UGX</b></div>
 </div>
-<button class="btn blue" style="margin-top:12px" onclick="receiveAll()">💰 Receive Daily Income - <span id="dh2">0 UGX</span></button>
+<button class="btn" style="background:gold;color:#000;margin-top:12px" onclick="receiveAll()">💰 Receive Daily - <span id="dh2">0 UGX</span></button>
 </div>
 
 <!-- OFFICIAL GROUP -->
-<div class="card" style="border:1px solid #00aaff">
-<h3 style="color:#00aaff;font-size:15px">📢 Official Group</h3>
-<div class="sub" style="margin:8px 0;font-size:12px">Join official community for updates</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-<button class="btn" style="background:#0088cc;color:#fff;padding:10px;font-size:12px" onclick="window.open('https://t.me/skylightai')">Telegram</button>
-<button class="btn" style="background:#25D366;color:#fff;padding:10px;font-size:12px" onclick="window.open('https://wa.me/256793814204')">WhatsApp</button>
+<div class="card">
+<h3 style="font-size:14px">📢 Official Group</h3>
+<p style="font-size:12px;color:#666;margin:6px 0">Join official community for updates & support</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+<button style="background:#0088cc;color:#fff;padding:12px;border:none;border-radius:8px;font-weight:700" onclick="window.open('https://t.me/skylightai')">Telegram</button>
+<button style="background:#25D366;color:#fff;padding:12px;border:none;border-radius:8px;font-weight:700" onclick="window.open('https://wa.me/256793814204')">WhatsApp</button>
 </div>
 </div>
 
-<!-- FOUR FOUNDERS - USA -->
-<div class="card" style="border:1px solid gold">
-<h3 style="color:gold;font-size:15px">👑 Four Founders - USA</h3>
+<!-- FOUR FOUNDERS - REAL FACES -->
+<div class="card">
+<h3 style="font-size:14px">👑 Four Founders - USA 🇺🇸</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
+
+<div style="background:#f8f9ff;padding:12px;border-radius:14px;text-align:center;border:1px solid #e0e0ff">
+<img src="https://randomuser.me/api/portraits/men/32.jpg" style="width:65px;height:65px;border-radius:50%;border:3px solid gold">
+<br><b style="font-size:12px">Michael J.</b><br><span style="font-size:10px;color:#0066ff;font-weight:700">CEO</span>
+</div>
+
+<div style="background:#f8f9ff;padding:12px;border-radius:14px;text-align:center;border:1px solid #e0e0ff">
+<img src="https://randomuser.me/api/portraits/men/45.jpg" style="width:65px;height:65px;border-radius:50%;border:3px solid #00aaff">
+<br><b style="font-size:12px">Alex Carter</b><br><span style="font-size:10px;color:#00aaff;font-weight:700">CTO</span>
+</div>
+
+<div style="background:#f8f9ff;padding:12px;border-radius:14px;text-align:center;border:1px solid #e0e0ff">
+<img src="https://randomuser.me/api/portraits/men/22.jpg" style="width:65px;height:65px;border-radius:50%;border:3px solid #00cc66">
+<br><b style="font-size:12px">David Smith</b><br><span style="font-size:10px;color:#00aa44;font-weight:700">COO</span>
+</div>
+
+<div style="background:#f8f9ff;padding:12px;border-radius:14px;text-align:center;border:1px solid #e0e0ff">
+<img src="https://randomuser.me/api/portraits/women/44.jpg" style="width:65px;height:65px;border-radius:50%;border:3px solid #cc66ff">
+<br><b style="font-size:12px">Sarah Wilson</b><br><span style="font-size:10px;color:#9933ff;font-weight:700">CFO</span>
+</div>
+
+</div>
+</div>
+</div>
+
+<!-- MACHINES -->
+<div id="p-machines" class="page">
+<div class="card"><h3>⚡ Machines</h3><p style="font-size:12px;color:#666">AI Mining Machines - Buy to earn daily</p>
+<div style="margin-top:10px;padding:12px;background:#f0f4ff;border-radius:10px;border:1px solid #c0d0ff">Machine S1 - 50,000 UGX - 2,500/day <button class="btn" style="background:#0066ff;color:#fff;margin-top:6px;padding:8px">Buy Now</button></div>
+<div style="margin-top:8px;padding:12px;background:#f0fff4;border-radius:10px;border:1px solid #a0e0b0">Machine M2 - 150,000 UGX - 8,000/day <button class="btn" style="background:#00aa44;color:#fff;margin-top:6px;padding:8px">Buy Now</button></div>
+</div>
+</div>
+
+<!-- MY PAGE -->
+<div id="p-my" class="page">
+<div class="card" style="background:linear-gradient(135deg,#0a1930,#1a3a6a);color:#fff;border:none">
+<div style="text-align:center"><div class="sub" style="color:#8aa0c6">Wallet Balance</div><b style="font-size:24px">0 UGX</b></div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
-
-<div style="background:#0a1930;padding:12px;border-radius:12px;text-align:center">
-<div style="font-size:26px">👨‍💼</div><b style="font-size:12px">Michael J.</b><br><span style="font-size:10px;color:#8aa0c6">CEO</span>
+<button class="btn" style="background:#00ff88;color:#000">📥 Deposit</button>
+<button class="btn" style="background:#fff;color:#000">📤 Withdrawal</button>
+</div>
+</div>
+<div class="card"><div style="display:flex;justify-content:space-between"><span>Total Deposit</span><b>0 UGX</b></div><div style="display:flex;justify-content:space-between;margin-top:8px"><span>Total Withdrawal</span><b>0 UGX</b></div><div style="display:flex;justify-content:space-between;margin-top:8px"><span>Team Earnings</span><b style="color:#00aa44">0 UGX</b></div></div>
 </div>
 
-<div style="background:#0a1930;padding:12px;border-radius:12px;text-align:center">
-<div style="font-size:26px">👨‍💻</div><b style="font-size:12px">Alex Carter</b><br><span style="font-size:10px;color:#8aa0c6">CTO</span>
-</div>
-
-<div style="background:#0a1930;padding:12px;border-radius:12px;text-align:center">
-<div style="font-size:26px">👨‍💼</div><b style="font-size:12px">David Smith</b><br><span style="font-size:10px;color:#8aa0c6">COO</span>
-</div>
-
-<div style="background:#0a1930;padding:12px;border-radius:12px;text-align:center">
-<div style="font-size:26px">👩‍💼</div><b style="font-size:12px">Sarah Wilson</b><br><span style="font-size:10px;color:#8aa0c6">CFO</span>
-</div>
-
+<!-- CHATS -->
+<div id="p-chats" class="page">
+<div class="card"><h3>💬 Chats</h3><p style="font-size:12px;color:#666">Official support chats</p>
+<div style="margin-top:10px;padding:12px;background:#f5f5f5;border-radius:10px">📢 Official Support - Online <button style="float:right;background:#25D366;color:#fff;border:none;padding:6px 12px;border-radius:6px">Chat</button></div>
 </div>
 </div>
 
+<!-- SETTINGS -->
+<div id="p-settings" class="page">
+<div class="card" style="text-align:center">
+<img src="https://randomuser.me/api/portraits/men/1.jpg" id="profilePic" style="width:80px;height:80px;border-radius:50%;border:3px solid gold">
+<br><b style="margin-top:8px;display:block">My Account</b><span style="font-size:11px;color:#888">ID: 883492</span>
+<br><button style="margin-top:8px;background:#f0f0f0;border:none;padding:6px 12px;border-radius:6px;font-size:11px" onclick="document.getElementById('picInput').click()">Change Profile Pic</button>
+<input type="file" id="picInput" hidden accept="image/*" onchange="changePic(this)">
 </div>
+<div class="card">
+<h3 style="font-size:13px">🔒 Change Password</h3>
+<input type="password" placeholder="Old Password"><input type="password" placeholder="New Password"><input type="password" placeholder="Confirm Password">
+<button class="btn" style="background:#0a1930;color:#fff">Update Password</button>
+</div>
+<div class="card">
+<button class="btn" style="background:#ff3b3b;color:#fff" onclick="if(confirm('Log out?')) location.reload()">🚪 Log Out</button>
+</div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+<button onclick="showPage('home')" id="n-home" class="active"><span>🏠</span>Home</button>
+<button onclick="showPage('machines')" id="n-machines"><span>⚡</span>Machines</button>
+<button onclick="showPage('my')" id="n-my"><span>💼</span>My</button>
+<button onclick="showPage('chats')" id="n-chats"><span>💬</span>Chats</button>
+<button onclick="showPage('settings')" id="n-settings"><span>⚙️</span>Settings</button>
+</div>
+
+<script>
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('p-'+p).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.getElementById('n-'+p).classList.add('active')}
+function receiveAll(){alert('Daily income received!')}
+function changePic(input){if(input.files&&input.files[0]){var r=new FileReader();r.onload=function(e){document.getElementById('profilePic').src=e.target.result};r.readAsDataURL(input.files[0])}}
+</script>
+</body>
+                                                                </html>
