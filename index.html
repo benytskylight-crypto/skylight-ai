@@ -1,10 +1,9 @@
-<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SKYLIGHT AI - 4 TYPES x 6 LEVELS</title><style>
+<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>SKYLIGHT AI</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#070e1f;color:#fff;padding-bottom:85px}
-.header{padding:12px 16px;display:flex;justify-content:space-between;background:#070e1f;position:sticky;top:0;z-index:20;border-bottom:1px solid #1a2f5a}
-.logo{font-weight:900;color:#00e5ff}.logo span{color:gold}.live{color:#2eff8a;font-size:11px;display:flex;align-items:center;gap:5px}
-.dot{width:8px;height:8px;background:#2eff8a;border-radius:50%;animation:blink 1s infinite}@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.card{background:#111f3d;border-radius:16px;padding:14px;margin:10px;border:1px solid #1e355f}
-.sub{color:#8aa0c6;font-size:12px}.btn{width:100%;padding:13px;border-radius:12px;border:none;font-weight:800;cursor:pointer}.blue{background:linear-gradient(90deg,gold,#ffaa00);color:#000}
+.header{padding:14px 16px;display:flex;justify-content:center;background:#070e1f;position:sticky;top:0;z-index:20;border-bottom:1px solid #1a2f5a}
+.logo{font-weight:900;color:#00e5ff;font-size:18px}.logo span{color:gold}
+.card{background:#111f3d;border-radius:16px;padding:20px;margin:15px;border:1px solid #1e355f}
+.sub{color:#8aa0c6;font-size:12px}.btn{width:100%;padding:14px;border-radius:12px;border:none;font-weight:800;cursor:pointer}.blue{background:linear-gradient(90deg,gold,#ffaa00);color:#000}
 .page{display:none}.page.active{display:block}
 .mach-card{display:flex;margin:8px 10px;background:#111f3d;border-radius:14px;overflow:hidden;border:1px solid #2a4a7a}
 .mach-img{width:115px;height:100px;background:#000;position:relative;overflow:hidden;flex-shrink:0}
@@ -18,10 +17,15 @@
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#0e1d38;display:flex;justify-content:space-around;padding:9px 0 7px;border-top:1px solid #1e355f;z-index:99}
 .bottom div{flex:1;text-align:center;font-size:10px;color:#8aa0c6;cursor:pointer}.bottom div b{display:block;font-size:17px;margin-bottom:2px}
 .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#1a2f5a;padding:12px 22px;border-radius:25px;display:none;z-index:999;max-width:88%;text-align:center;font-size:13px;border:1px solid #2a4a7a}
+.input{width:100%;padding:14px;background:#0a1930;border:1px solid #1e355f;border-radius:12px;color:#fff;margin:10px 0;font-size:15px}
 </style></head><body>
-<div class="header"><div class="logo">SKYLIGHT <span>AI COMPANY</span></div><div class="live"><span class="dot"></span> 4 TYPES x 6 LEVELS = 24</div></div>
-<div id="p-login" class="page active"><div class="card" style="border:1px solid gold"><h2 style="color:gold">4 TYPES x 6 LEVELS = 24 MACHINES!</h2><div class="sub" style="margin:8px 0;line-height:1.6">✅ M1: 6 levels same M1 photo<br>✅ M2: 6 levels same M2 photo<br>✅ M3: 6 levels same M3 photo<br>✅ SKY: 6 levels same Sky photo<br>✅ One image per type, 1 to 6 machines</div>
-<input style="width:100%;padding:12px;background:#070e1f;border:1px solid #1e355f;border-radius:10px;color:#fff;margin:8px 0" value="0779434443"><input style="width:100%;padding:12px;background:#070e1f;border:1px solid #1e355f;border-radius:10px;color:#fff" type="password" value="123456"><button class="btn blue" style="margin-top:10px" onclick="login()">LOGIN - See 24 Machines</button></div></div>
+<div class="header"><div class="logo">SKYLIGHT <span>AI COMPANY</span></div></div>
+<div id="p-login" class="page active"><div class="card" style="margin-top:40px;border:1px solid #1e355f">
+<h2 style="color:#fff;text-align:center;margin-bottom:5px">Welcome Back</h2><p style="text-align:center;color:#8aa0c6;font-size:13px;margin-bottom:20px">Enter your account</p>
+<input class="input" id="phone" placeholder="Enter phone number" value="0779434443">
+<input class="input" id="pwd" type="password" placeholder="Login password" value="123456">
+<button class="btn blue" style="margin-top:15px;font-size:16px" onclick="login()">LOGIN</button>
+</div></div>
 <div id="p-home" class="page"><div class="card"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div style="background:#0d1a33;padding:12px;border-radius:12px"><div class="sub">Wallet</div><b id="bh">0 UGX</b></div><div style="background:rgba(0,255,136,0.1);padding:12px;border-radius:12px;border:1px solid #00ff88"><div class="sub">Daily</div><b id="dh" style="color:#2eff8a">0 UGX</b></div></div><button class="btn blue" style="margin-top:12px" onclick="receiveAll()">Receive All - <span id="dh2">0 UGX</span></button></div></div>
 <div id="p-machines" class="page"><div style="display:flex;overflow-x:auto;padding:10px 10px 0;gap:4px;white-space:nowrap;background:#070e1f;position:sticky;top:48px;z-index:10;border-bottom:1px solid #1a2f5a">
 <span class="tab active" id="ta" onclick="filterM('all')">All 24</span><span class="tab" id="tb" onclick="filterM('m1')">M1 (6)</span><span class="tab" id="tc" onclick="filterM('m2')">M2 (6)</span><span class="tab" id="td" onclick="filterM('m3')">M3 (6)</span><span class="tab" id="te" onclick="filterM('sky')">SKY (6)</span></div><div id="mc"></div></div>
@@ -43,7 +47,7 @@ function upd(){let b=bal.toLocaleString()+' UGX';['bh','bw','sb'].forEach(id=>{l
 function hide(){document.querySelectorAll('.page').forEach(p=>p.style.display='none')}
 function goHome(){hide();document.getElementById('p-home').style.display='block';upd()}
 function showP(id){hide();document.getElementById(id).style.display='block';upd()}
-function login(){hide();document.getElementById('p-machines').style.display='block';build();toast('24 MACHINES - 4 TYPES x 6 LEVELS LOADED!')}
+function login(){hide();document.getElementById('p-machines').style.display='block';build();toast('Welcome! 24 Machines')}
 function toast(t){let e=document.getElementById('toast');e.innerText=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500)}
 function filterM(c){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));let m={all:'ta',m1:'tb',m2:'tc',m3:'td',sky:'te'};let el=document.getElementById(m[c]);if(el)el.classList.add('active');document.querySelectorAll('.mach-card').forEach(card=>{card.style.display=c==='all'||card.dataset.cat===c?'flex':'none'})}
 function buy(n,d,p){if(owned[n]){toast(n+' already owned');return}if(bal<p){toast('Need '+p+' UGX');return}bal-=p;owned[n]=d;daily+=d;localStorage.setItem('skylight_owned',JSON.stringify(owned));upd();toast('Rented '+n+'!')}
