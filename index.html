@@ -21,3 +21,20 @@ function buyMach(n,d){if(n.startsWith('VIP')){let need=vipReq[n]||0; if(inviteCo
 }
 function addInvite(){inviteCount++; localStorage.setItem('invite_count',inviteCount); toast('✅ Added 1 invite! Total: '+inviteCount);}
 </script>
+let inviteCount=parseInt(localStorage.getItem('invite_count')||0);
+let vipReq={"VIP1":1,"VIP2":2,"VIP3":3,"VIP4":5,"VIP5":8,"VIP6":10};
+
+function buyMach(n,d){
+ if(owned[n]){toast(n+' already rented!');return}
+ if(n.startsWith('VIP')){
+  let need=vipReq[n]||0;
+  if(inviteCount<need){
+   toast('🔒 VIP LOCKED! Need '+need+' invites to buy '+n+'. You have '+inviteCount+'. Go to Settings > Copy Invite Link & invite friends!');
+   return;
+  }
+ }
+ let price=prices[n]||0;
+ if(balance<price){toast('❌ Need '+price+' UGX');return}
+ balance-=price;owned[n]=d;saveOwned();dailyTotal+=d;machineCount++;toast('✅ Rented '+n);updateBal();
+}
+function addInvite(){inviteCount++;localStorage.setItem('invite_count',inviteCount);updateBal();toast('✅ Added 1 invite! Total: '+inviteCount);}
