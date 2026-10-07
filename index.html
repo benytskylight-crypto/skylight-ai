@@ -1,80 +1,60 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SKYLIGHT AI</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#070e1f;color:#fff;padding-bottom:95px}
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SKYLIGHT AI</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#070e1f;color:#fff;padding-bottom:95px}
 .card{background:#111f3d;border-radius:18px;padding:16px;margin:12px;border:1px solid #1e355f}
 .mc{border-radius:14px;display:flex;margin:9px 12px;overflow:hidden;border:1px solid #1e355f;background:#111f3d}
 .mi{width:130px;display:flex;align-items:center;justify-content:center;min-height:115px;background:#000;position:relative}
 .bd{position:absolute;top:6px;left:6px;padding:3px 8px;border-radius:20px;font-weight:900;font-size:10px}
 .in{padding:9px 10px;flex:1;line-height:1.4;font-size:12px}.input{width:100%;padding:12px;background:#070e1f;border:1px solid #1e355f;border-radius:12px;color:#fff;margin:6px 0}
 .btn{width:100%;padding:13px;border-radius:12px;border:none;font-weight:800;margin-top:6px}.blue{background:#00d4ff;color:#000}.green{background:#2eff8a;color:#000}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#0e1d38;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #1e355f}
-.bottom div{font-size:11px;color:#8aa0c6;text-align:center;flex:1;cursor:pointer}
-.page{display:none}.page.active{display:block}
-.avatar{width:70px;height:70px;border-radius:50%;border:2px solid gold}
-</style></head><body>
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#0e1d38;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #1e355f;z-index:99}
+.bottom div{font-size:11px;color:#8aa0c6;text-align:center;flex:1;cursor:pointer}.page{display:none}.page.active{display:block}.avatar{width:70px;height:70px;border-radius:50%;border:2px solid gold}</style></head><body>
 
-<!-- PAGE 1: LOGIN AS OLD ONE -->
 <div id="p-auth" class="page active">
-<div class="card"><h3>Login / Register</h3>
-<input id="rName" class="input" placeholder="Full Name">
-<input id="rPhone" class="input" placeholder="Number">
-<input id="rEmail" class="input" placeholder="Email">
-<input id="rPass" class="input" type="password" placeholder="Password">
-<input id="rPass2" class="input" type="password" placeholder="Confirm Password">
-<input id="rPic" type="file" accept="image/*" onchange="setPic(this)" class="input">
-<button class="btn blue" onclick="reg()">Create Account</button>
-</div>
-<div class="card" id="loginBox"><h3>Login</h3>
-<input id="lPhone" class="input" placeholder="Number">
-<input id="lPass" class="input" type="password" placeholder="Password">
-<button class="btn blue" onclick="log()">Login</button>
-</div>
+<div class="card"><h3>Create Account</h3><input id="rName" class="input" placeholder="Full Name"><input id="rPhone" class="input" placeholder="Number - e.g. 0793814204"><input id="rEmail" class="input" placeholder="Email"><input id="rPass" class="input" type="password" placeholder="Password"><input id="rPass2" class="input" type="password" placeholder="Confirm Password"><button class="btn blue" onclick="reg()">Create Account</button></div>
+<div class="card"><h3>Login</h3><input id="lPhone" class="input" placeholder="Number"><input id="lPass" class="input" type="password" placeholder="Password"><button class="btn blue" onclick="log()">Login</button></div>
 </div>
 
-<!-- PAGE 2: HOME + FOUNDERS OLD STYLE -->
 <div id="p-home" class="page">
-<div class="card"><div style="display:flex;gap:10px"><img id="upic1" src="https://randomuser.me/api/portraits/men/1.jpg" class="avatar"><div><b id="uname"></b><br><span id="uphone" style="font-size:12px;color:#8aa0c6"></span><br><b id="ubal" style="color:gold"></b></div></div>
-<div style="display:flex;gap:8px;margin-top:10px"><button class="btn green" onclick="show('deposit')">Deposit</button><button class="btn blue" onclick="show('withdraw')">Withdraw / Cash Out</button></div>
-</div>
+<div class="card"><div style="display:flex;gap:10px;align-items:center"><img id="upic1" src="https://randomuser.me/api/portraits/men/1.jpg" class="avatar"><div><b id="uname"></b><br><span id="uphone" style="font-size:12px;color:#8aa0c6"></span><br><b id="ubal" style="color:gold;font-size:18px">0 UGX</b></div></div>
+<div style="display:flex;gap:8px;margin-top:10px"><button class="btn green" onclick="show('deposit')">Deposit</button><button class="btn blue" onclick="show('withdraw')">Withdraw / Cash Out</button></div></div>
+
 <div class="card"><h3>4 Founders</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
-<div style="text-align:center;background:#070e1f;padding:8px;border-radius:10px"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="avatar"><br>Founder 1</div>
-<div style="text-align:center;background:#070e1f;padding:8px;border-radius:10px"><img src="https://randomuser.me/api/portraits/men/33.jpg" class="avatar"><br>Founder 2</div>
-<div style="text-align:center;background:#070e1f;padding:8px;border-radius:10px"><img src="https://randomuser.me/api/portraits/women/44.jpg" class="avatar"><br>Founder 3</div>
-<div style="text-align:center;background:#070e1f;padding:8px;border-radius:10px"><img src="https://randomuser.me/api/portraits/men/45.jpg" class="avatar"><br>Founder 4</div>
-</div></div>
+<div style="text-align:center;background:#070e1f;padding:8px;border-radius:10px"><img src="https://randomuser.me/api/portraits/men/32.jpg" class="avatar"><br>Founder 1 - CEO</div>
+<div style="text-align:center;background:#070e1f;padding:8px;border-radius:10px"><img src="https://randomuser.me/api/portraits/men/33.jpg" class="avatar"><br>Founder 2 - CTO</div>
+<div style="text-align:center;background:#070e1f;padding:8px;border-radius:10px"><img src="https://randomuser.me/api/portraits/women/44.jpg" class="avatar"><br>Founder 3 - COO</div>
+<div style="text-align:center;background:#070e1f;padding:8px;border-radius:10px"><img src="https://randomuser.me/api/portraits/men/45.jpg" class="avatar"><br>Founder 4 - CFO</div></div></div>
+
+<div class="card" style="border:1px solid #2eff8a"><h3>📢 Official Group</h3><div style="font-size:12px;color:#8aa0c6;margin:8px 0">Join our official channel for announcements</div>
+<button class="btn blue" onclick="window.open('https://t.me/skylightai','_blank')">Join Telegram Official Group</button>
+<button class="btn green" style="margin-top:8px" onclick="window.open('https://chat.whatsapp.com/YOUR_LINK','_blank')">Join WhatsApp Official Group</button>
+<div style="font-size:11px;color:#8aa0c6;margin-top:8px">Support: 0793814204 - Kampala</div>
+</div>
 </div>
 
-<!-- PAGE 3: MACHINES AS OLD ONE - 36 BUT SAME LOOK AS YOUR SCREENSHOT -->
 <div id="p-machines" class="page"><div id="list"></div></div>
-
-<!-- DEPOSIT -->
-<div id="p-deposit" class="page"><div class="card"><h3>Deposit</h3><input id="dAmt" class="input" type="number" placeholder="Amount"><input id="dPhone" class="input" placeholder="MM Number"><button class="btn green" onclick="dep()">Cash In</button></div></div>
-
-<!-- WITHDRAW CASH OUT -->
-<div id="p-withdraw" class="page"><div class="card"><h3>Withdrawal / Cash Out</h3><div id="wBal"></div><input id="wAmt" class="input" type="number" placeholder="Amount"><input id="wPhone" class="input" placeholder="Cash out number"><button class="btn blue" onclick="withd()">Cash Out</button></div></div>
-
-<!-- SETTINGS - CHANGE PASSWORD + PROFILE PIC -->
-<div id="p-settings" class="page"><div class="card"><h3>Settings - Change Password + Profile Pic</h3><div style="text-align:center"><img id="upic2" src="https://randomuser.me/api/portraits/men/1.jpg" class="avatar"><br><input type="file" accept="image/*" onchange="setPic(this)" style="margin-top:6px"></div>
+<div id="p-deposit" class="page"><div class="card"><h3>Deposit - Cash In</h3><div id="dBal"></div><input id="dAmt" class="input" type="number" placeholder="Amount UGX - min 1000"><input id="dPhone" class="input" placeholder="Your MTN/Airtel Number"><button class="btn green" onclick="dep()">Confirm Deposit</button></div></div>
+<div id="p-withdraw" class="page"><div class="card"><h3>Withdrawal / Cash Out</h3><div id="wBal"></div><input id="wAmt" class="input" type="number" placeholder="Amount to Cash Out"><input id="wPhone" class="input" placeholder="Cash Out to Number"><button class="btn blue" onclick="withd()">Request Cash Out</button></div></div>
+<div id="p-settings" class="page"><div class="card"><h3>Settings</h3><div style="text-align:center"><img id="upic2" src="https://randomuser.me/api/portraits/men/1.jpg" class="avatar"><br><input type="file" accept="image/*" onchange="setPic(this)" style="margin-top:6px"></div>
 <input id="sName" class="input" placeholder="Name"><input id="sEmail" class="input" placeholder="Email"><input id="sPhone" class="input" placeholder="Number">
 <input id="sOld" class="input" type="password" placeholder="Old Password"><input id="sNew" class="input" type="password" placeholder="New Password"><input id="sNew2" class="input" type="password" placeholder="Confirm New Password">
-<button class="btn blue" onclick="save()">Save / Upgrade</button></div></div>
+<button class="btn blue" onclick="save()">Save / Change Password</button><button class="btn" style="background:#ff3b3b;color:#fff" onclick="logout()">Logout - Clear 23500 UGX</button></div></div>
 
 <div class="bottom"><div onclick="show('home')">🏠 Home</div><div onclick="show('machines')">🤖 Machines</div><div onclick="show('deposit')">💰 Deposit</div><div onclick="show('withdraw')">💸 Cash Out</div><div onclick="show('settings')">⚙️ Settings</div></div>
 
 <script>
-let user=JSON.parse(localStorage.getItem('sky_user')||'null'),bal=parseInt(localStorage.getItem('sky_bal')||'0'),pic=localStorage.getItem('sky_pic')||'https://randomuser.me/api/portraits/men/1.jpg';
+let user=JSON.parse(localStorage.getItem('sky_user')||'null');let bal=parseInt(localStorage.getItem('sky_bal')||'0');let pic=localStorage.getItem('sky_pic')||'https://randomuser.me/api/portraits/men/1.jpg';
 const ms=[{id:'VIP1',n:'VIP1 KING',p:1000},{id:'VIP2',n:'VIP2 EMPEROR',p:2500},{id:'VIP3',n:'VIP3 LEGEND',p:5000},{id:'VIP4',n:'VIP4 TITAN',p:10000},{id:'VIP5',n:'VIP5 SUPREME',p:20000},{id:'VIP6',n:'VIP6 ULTIMATE',p:50000},
 {id:'B1',n:'BASIC Node 1',p:2000},{id:'B2',n:'BASIC Node 2',p:5000},{id:'B3',n:'BASIC Node 3',p:8000},{id:'B4',n:'BASIC Node 4',p:10000},{id:'B5',n:'BASIC Node 5',p:12000},{id:'B6',n:'BASIC Node 6',p:15000},
 {id:'P1',n:'PRO Cluster 1',p:20000},{id:'P2',n:'PRO Cluster 2',p:25000},{id:'P3',n:'PRO Cluster 3',p:30000},{id:'P4',n:'PRO Cluster 4',p:35000},{id:'P5',n:'PRO Cluster 5',p:40000},{id:'P6',n:'PRO Cluster 6',p:50000},{id:'P7',n:'PRO Cluster 7',p:60000},{id:'P8',n:'PRO Cluster 8',p:75000},{id:'P9',n:'PRO Cluster 9',p:90000},{id:'P10',n:'PRO Cluster 10',p:100000},{id:'P11',n:'PRO Cluster 11',p:120000},{id:'P12',n:'PRO Cluster 12',p:150000},
-{id:'E1',n:'ELITE Server 1',p:180000},{id:'E2',n:'ELITE Server 2',p:200000},{id:'E3',n:'ELITE Server 3',p:250000},{id:'E4',n:'ELITE Server 4',p:300000},{id:'E5',n:'ELITE Server 5',p:350000},{id:'E6',n:'ELITE Server 6',p:400000},{id:'E7',n:'ELITE Server 7',p:450000},{id:'E8',n:'ELITE Server 8',p:500000},{id:'E9',n:'ELITE Server 9',p:600000},{id:'E10',n:'ELITE Server 10',p:700000},{id:'E11',n:'ELITE Server 11',p:800000},{id:'E12',n:'ELITE Server 12',p:1000000},
-];
-function render(){let h='';ms.forEach(m=>{let gold=m.id.includes('VIP');let col=gold?'gold':'#00e5ff';h+=`<div class="mc"><div class="mi"><span class="bd" style="background:${col};color:${gold?'#000':'#fff'}">${m.id} ${gold?'👑':''}</span><img src="https://i.ibb.co/JjzPSSsV/Sky-machine.jpg" style="width:100px;height:90px;object-fit:cover;border-radius:10px;border:2px solid ${col}"></div><div class="in"><b style="color:${col}">${m.n}</b><br>Price: ${m.p.toLocaleString()} UGX<br>Type: Premium AI Server Rental<br>Duration: 30 Days<br><span style="color:#2eff8a">✅ Available - No invite needed</span><br><button style="background:${col};color:${gold?'#000':'#fff'};border:none;padding:6px 11px;border-radius:7px;font-weight:800;margin-top:4px" onclick="buy(${m.p})">Buy</button></div></div>`});document.getElementById('list').innerHTML=h;}
-function show(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('p-'+p).classList.add('active');document.getElementById('ubal').innerText=bal+' UGX';document.getElementById('wBal').innerText='Balance: '+bal+' UGX';}
+{id:'E1',n:'ELITE Server 1',p:180000},{id:'E2',n:'ELITE Server 2',p:200000},{id:'E3',n:'ELITE Server 3',p:250000},{id:'E4',n:'ELITE Server 4',p:300000},{id:'E5',n:'ELITE Server 5',p:350000},{id:'E6',n:'ELITE Server 6',p:400000},{id:'E7',n:'ELITE Server 7',p:450000},{id:'E8',n:'ELITE Server 8',p:500000},{id:'E9',n:'ELITE Server 9',p:600000},{id:'E10',n:'ELITE Server 10',p:700000},{id:'E11',n:'ELITE Server 11',p:800000},{id:'E12',n:'ELITE Server 12',p:1000000}];
+function render(){let h='';ms.forEach(m=>{let gold=m.id.includes('VIP');let col=gold?'gold':'#00e5ff';h+=`<div class="mc"><div class="mi"><span class="bd" style="background:${col};color:${gold?'#000':'#fff'}">${m.id}</span><img src="https://i.ibb.co/JjzPSSsV/Sky-machine.jpg" style="width:100px;height:90px;object-fit:cover;border-radius:10px;border:2px solid ${col}"></div><div class="in"><b style="color:${col}">${m.n}</b><br>Price: ${m.p.toLocaleString()} UGX<br>Type: Premium AI Server Rental<br>Duration: 30 Days<br><span style="color:#2eff8a">✅ Available - No invite needed</span><br><button style="background:${col};color:${gold?'#000':'#fff'};border:none;padding:6px 11px;border-radius:7px;font-weight:800;margin-top:4px" onclick="buy(${m.p})">Buy</button></div></div>`});document.getElementById('list').innerHTML=h;}
+function show(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('p-'+p).classList.add('active');document.getElementById('ubal').innerText=bal.toLocaleString()+' UGX';document.getElementById('dBal').innerText='Balance: '+bal+' UGX';document.getElementById('wBal').innerText='Balance: '+bal+' UGX';}
 function setPic(i){let r=new FileReader();r.onload=e=>{pic=e.target.result;localStorage.setItem('sky_pic',pic);document.getElementById('upic1').src=pic;document.getElementById('upic2').src=pic;};r.readAsDataURL(i.files[0]);}
-function reg(){let n=document.getElementById('rName').value,ph=document.getElementById('rPhone').value,em=document.getElementById('rEmail').value,p=document.getElementById('rPass').value,p2=document.getElementById('rPass2').value;if(!n||!ph||!em||!p)return alert('Fill Number, Password Confirm, Name Email');if(p!==p2)return alert('Confirm not match');user={name:n,phone:ph,email:em,password:p};localStorage.setItem('sky_user',JSON.stringify(user));auth();}function log(){let ph=document.getElementById('lPhone').value,p=document.getElementById('lPass').value;if(!user||user.phone!==ph||user.password!==p)return alert('Wrong');auth();}
+function reg(){let n=document.getElementById('rName').value,ph=document.getElementById('rPhone').value,em=document.getElementById('rEmail').value,p=document.getElementById('rPass').value,p2=document.getElementById('rPass2').value;if(!n||!ph||!em||!p)return alert('Fill all');if(p!==p2)return alert('Confirm not match');user={name:n,phone:ph,email:em,password:p};localStorage.setItem('sky_user',JSON.stringify(user));localStorage.setItem('sky_bal','0');bal=0;auth();}
+function log(){let ph=document.getElementById('lPhone').value,p=document.getElementById('lPass').value;if(!user||user.phone!==ph||user.password!==p)return alert('Wrong');auth();}
 function auth(){document.getElementById('uname').innerText=user.name;document.getElementById('uphone').innerText=user.phone+' | '+user.email;document.getElementById('upic1').src=pic;document.getElementById('upic2').src=pic;document.getElementById('sName').value=user.name;document.getElementById('sPhone').value=user.phone;document.getElementById('sEmail').value=user.email;show('home');}
-function buy(p){bal+=p;localStorage.setItem('sky_bal',bal);alert('Invested '+p);}function dep(){let a=parseInt(document.getElementById('dAmt').value||0);bal+=a;localStorage.setItem('sky_bal',bal);show('home');}function withd(){let a=parseInt(document.getElementById('wAmt').value||0);if(a>bal)return alert('No balance');bal-=a;localStorage.setItem('sky_bal',bal);alert('Cash out '+a+' to '+document.getElementById('wPhone').value);show('home');}
+function buy(p){if(bal<p)return alert('Deposit first - Balance 0');bal+=0;alert('Rental: '+p+' - Contact 0793814204');}function dep(){let a=parseInt(document.getElementById('dAmt').value||0);if(a<1000)return alert('Min 1000');bal+=a;localStorage.setItem('sky_bal',bal);show('home');}function withd(){let a=parseInt(document.getElementById('wAmt').value||0);if(a>bal)return alert('No balance - 0 UGX');if(a<1000)return alert('Min 1000');bal-=a;localStorage.setItem('sky_bal',bal);alert('Cash out '+a+' to '+document.getElementById('wPhone').value);show('home');}
 function save(){let n=document.getElementById('sName').value,e=document.getElementById('sEmail').value,ph=document.getElementById('sPhone').value,old=document.getElementById('sOld').value,nw=document.getElementById('sNew').value,nw2=document.getElementById('sNew2').value;if(old&&old!==user.password)return alert('Old wrong');if(nw&&nw!==nw2)return alert('New confirm wrong');if(nw)user.password=nw;user.name=n;user.email=e;user.phone=ph;localStorage.setItem('sky_user',JSON.stringify(user));auth();alert('Saved');}
-render();if(user){document.getElementById('p-auth').classList.remove('active');document.getElementById('p-home').classList.add('active');auth();document.getElementById('upic1').src=pic;document.getElementById('upic2').src=pic;}
+function logout(){localStorage.removeItem('sky_bal');localStorage.removeItem('sky_user');bal=0;location.reload();}
+render();if(user){document.getElementById('p-auth').classList.remove('active');document.getElementById('p-home').classList.add('active');auth();}else{bal=0;localStorage.setItem('sky_bal','0');}
 </script></body></html>
