@@ -1,39 +1,142 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SKYLIGHT AI</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#070e1f;color:#fff;padding-bottom:90px}
-.card{background:#111f3d;border-radius:18px;padding:16px;margin:12px;border:1px solid #1e355f}
-.mc{border-radius:14px;display:flex;margin:9px 12px;overflow:hidden;border:1px solid #1e355f;background:#111f3d}
-.mi{width:130px;display:flex;align-items:center;justify-content:center;min-height:115px;background:#000;position:relative}
-.bd{position:absolute;top:6px;left:6px;padding:3px 8px;border-radius:20px;font-weight:900;font-size:11px}
-.in{padding:9px 10px;flex:1;line-height:1.45;font-size:12px}.bs{border:none;padding:7px 13px;border-radius:8px;font-weight:800;cursor:pointer}
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>SKYLIGHT AI COMPANY</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#070e1f;color:#fff;padding-bottom:95px}
+.hd{padding:12px 16px;display:flex;justify-content:space-between;background:#070e1f;position:sticky;top:0;z-index:10;border-bottom:1px solid #1e355f}
+.logo{font-weight:900;color:#00e5ff;letter-spacing:1px}.card{background:#111f3d;border-radius:18px;padding:16px;margin:12px;border:1px solid #1e355f}
+.sub{color:#8aa0c6;font-size:12px;line-height:1.4}.input{width:100%;padding:13px;background:#070e1f;border:1px solid #1e355f;border-radius:12px;color:#fff;margin:6px 0}
+.btn{width:100%;padding:14px;border-radius:14px;border:none;font-weight:800;cursor:pointer;margin-top:8px}.blue{background:linear-gradient(90deg,#00d4ff,#7b2cff);color:#fff}.green{background:#2eff8a;color:#000}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#0e1d38;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #1e355f;z-index:99}
+.bottom div{text-align:center;font-size:10.5px;color:#8aa0c6;flex:1;cursor:pointer}.page{display:none}.page.active{display:block}
+.mc{border-radius:14px;display:flex;margin:8px 12px;overflow:hidden;border:1px solid #1e355f;background:#111f3d}
+.mi{width:125px;display:flex;align-items:center;justify-content:center;min-height:115px;background:#000;position:relative;flex-shrink:0}
+.bd{position:absolute;top:6px;left:6px;padding:3px 8px;border-radius:20px;font-weight:900;font-size:10px;z-index:2}
+.in{padding:9px 10px;flex:1;line-height:1.4;font-size:12px}.bs{border:none;padding:7px 12px;border-radius:8px;font-weight:800;cursor:pointer;margin:3px 3px 0 0}
+.tab{padding:6px 11px;color:#8aa0c6;font-weight:700;font-size:12px;white-space:nowrap;border-radius:20px;background:#111f3d;border:1px solid #1e355f;margin-right:5px;cursor:pointer}
+.tab.active{color:#000;background:gold;border-color:gold}.founders{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
+.founder{background:#0d1a33;padding:10px;border-radius:12px;text-align:center;border:1px solid #2a3a5f}.founder.gold{border-color:gold}
 </style></head><body>
+<div class="hd"><div class="logo">SKYLIGHT AI</div><div style="color:#2eff8a;font-size:10px">● REAL COMPANY • Kampala</div></div>
 
-<!-- VIP1 - SAME AS YOUR SCREENSHOT BUT NO INVITE NO PROFIT PROMISE -->
-<div class="mc">
-<div class="mi"><span class="bd" style="background:gold;color:#000">VIP1 👑</span>
-<img src="https://i.ibb.co/JjzPSSsV/Sky-machine.jpg" style="width:100px;height:90px;object-fit:cover;border-radius:10px;border:2px solid gold">
+<!-- AUTH -->
+<div id="p-auth" class="page active">
+<div class="card"><h3>Create Account</h3><div class="sub">Phone, Password, Name, Email - first step</div>
+<input id="regName" class="input" placeholder="Full Name">
+<input id="regPhone" class="input" placeholder="Phone Number">
+<input id="regEmail" class="input" placeholder="Email">
+<input id="regPass" class="input" type="password" placeholder="Password">
+<input id="regPass2" class="input" type="password" placeholder="Confirm Password">
+<button class="btn blue" onclick="register()">Create Account</button>
+<div class="sub" style="margin-top:8px">Have account? <span style="color:#00e5ff" onclick="showLogin()">Login</span></div></div>
+<div id="loginBox" class="card" style="display:none"><h3>Login</h3>
+<input id="logPhone" class="input" placeholder="Phone Number">
+<input id="logPass" class="input" type="password" placeholder="Password">
+<button class="btn blue" onclick="login()">Login</button></div>
 </div>
-<div class="in">
-<b style="color:gold">VIP1 KING</b><br>
-Price: 1,000 UGX<br>
-Type: Premium AI Server Rental<br>
-Duration: 30 Days Unlimited Use<br>
-<span style="color:#2eff8a">✅ Available - No invite needed</span><br>
-<button class="bs" style="background:gold;color:#000" onclick="alert('Rental activated - 30 days')">Buy</button>
+
+<!-- HOME -->
+<div id="p-home" class="page">
+<div class="card"><div style="display:flex;justify-content:space-between"><div><div class="sub">Welcome</div><b id="uName">User</b><br><span class="sub" id="uPhone"></span></div><div style="text-align:right"><div class="sub">Investment</div><b id="balHome" style="font-size:19px;color:gold">0 UGX</b></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+<button class="btn green" onclick="showPage('deposit')">Deposit</button>
+<button class="btn blue" onclick="showPage('withdraw')">Withdraw / Cash Out</button></div>
+<div class="sub" style="margin-top:8px;background:#070e1f;padding:9px;border-radius:10px">Profit depends on company performance. Not guaranteed. All VIP unlocked.</div></div>
+<div class="card" style="border:1px solid gold"><h3>👑 4 Founders</h3><div class="founders">
+<div class="founder gold"><img src="https://randomuser.me/api/portraits/men/32.jpg" style="width:60px;height:60px;border-radius:50%;border:2px solid gold"><br><b>Founder 1 - CEO</b></div>
+<div class="founder gold"><img src="https://randomuser.me/api/portraits/men/33.jpg" style="width:60px;height:60px;border-radius:50%;border:2px solid gold"><br><b>Founder 2 - CTO</b></div>
+<div class="founder"><img src="https://randomuser.me/api/portraits/women/44.jpg" style="width:60px;height:60px;border-radius:50%"><br><b>Founder 3 - COO</b></div>
+<div class="founder"><img src="https://randomuser.me/api/portraits/men/45.jpg" style="width:60px;height:60px;border-radius:50%"><br><b>Founder 4 - CFO</b></div>
+</div></div>
 </div>
+
+<!-- MACHINES CONTAINER -->
+<div id="p-machines" class="page">
+<div style="display:flex;gap:5px;padding:10px 12px 0;overflow-x:auto"><span class="tab active" onclick="filterMach('all',this)">All 36</span><span class="tab" onclick="filterMach('basic',this)">Basic</span><span class="tab" onclick="filterMach('pro',this)">Pro</span><span class="tab" onclick="filterMach('elite',this)">Elite</span><span class="tab" onclick="filterMach('vip',this)">VIP 6 UNLOCKED</span></div>
+<div id="machList"></div>
 </div>
 
-<!-- DUPLICATE THIS FOR VIP2-VIP6 - CHANGE PRICE ONLY -->
-<div class="mc">
-<div class="mi"><span class="bd" style="background:gold;color:#000">VIP2 👑</span>
-<img src="https://i.ibb.co/JjzPSSsV/Sky-machine.jpg" style="width:100px;height:90px;object-fit:cover;border-radius:10px;border:2px solid gold"></div>
-<div class="in"><b style="color:gold">VIP2 EMPEROR</b><br>Price: 2,500 UGX<br>Type: Premium AI Server<br>Duration: 30 Days<br><span style="color:#2eff8a">✅ Available</span><br><button class="bs" style="background:gold;color:#000">Buy</button></div></div>
+<!-- DEPOSIT -->
+<div id="p-deposit" class="page"><div class="card"><h3>Deposit - Cash In</h3>
+<input id="depAmount" class="input" type="number" placeholder="Amount UGX">
+<input id="depPhone" class="input" placeholder="Your Mobile Money Number">
+<button class="btn green" onclick="doDeposit()">Confirm Deposit</button></div></div>
 
-<div class="mc">
-<div class="mi"><span class="bd" style="background:gold;color:#000">VIP3 👑</span>
-<img src="https://i.ibb.co/JjzPSSsV/Sky-machine.jpg" style="width:100px;height:90px;object-fit:cover;border-radius:10px;border:2px solid gold"></div>
-<div class="in"><b style="color:gold">VIP3 LEGEND</b><br>Price: 5,000 UGX<br>Type: Premium AI Server<br>Duration: 30 Days<br><span style="color:#2eff8a">✅ Available</span><br><button class="bs" style="background:gold;color:#000">Buy</button></div></div>
+<!-- WITHDRAW -->
+<div id="p-withdraw" class="page"><div class="card"><h3>Withdrawal / Cash Out</h3><div class="sub">Balance: <b id="balW">0 UGX</b></div>
+<input id="withAmount" class="input" type="number" placeholder="Amount">
+<input id="withPhone" class="input" placeholder="Cash out to number">
+<button class="btn blue" onclick="doWithdraw()">Request Cash Out</button></div></div>
 
-<!-- Add your other 33 machines same style - just Price and Duration, no Daily 170 -->
+<!-- SETTINGS -->
+<div id="p-settings" class="page"><div class="card"><h3>Settings - Upgrade</h3>
+<input id="setName" class="input" placeholder="Full Name">
+<input id="setEmail" class="input" placeholder="Email">
+<input id="setPhone" class="input" placeholder="Phone Number">
+<input id="setPass" class="input" type="password" placeholder="New Password">
+<button class="btn blue" onclick="saveSettings()">Save / Upgrade</button>
+<button class="btn" style="background:#1e355f;color:#fff" onclick="logout()">Logout</button></div></div>
 
+<div id="p-rules" class="page"><div class="card"><h3>📜 Rules</h3><br>1. One account per person<br><br>2. Investment has risk - profit not guaranteed, depends on company revenue<br><br>3. Invite optional - 500 bonus - NOT needed for VIP - All VIP UNLOCKED<br><br>4. Don't cancel deposit while processing<br><br><div class="sub">Skylight AI Company Kampala - 0793814204</div></div></div>
+
+<script>
+const machines=[
+{id:'BASIC1',cat:'basic',name:'BASIC AI Node 1',price:2000,color:'#00e5ff'},
+{id:'BASIC2',cat:'basic',name:'BASIC AI Node 2',price:5000,color:'#00e5ff'},
+{id:'BASIC3',cat:'basic',name:'BASIC AI Node 3',price:8000,color:'#00e5ff'},
+{id:'BASIC4',cat:'basic',name:'BASIC AI Node 4',price:10000,color:'#00e5ff'},
+{id:'BASIC5',cat:'basic',name:'BASIC AI Node 5',price:12000,color:'#00e5ff'},
+{id:'BASIC6',cat:'basic',name:'BASIC AI Node 6',price:15000,color:'#00e5ff'},
+{id:'PRO1',cat:'pro',name:'PRO Cluster 1',price:20000,color:'#7b2cff'},
+{id:'PRO2',cat:'pro',name:'PRO Cluster 2',price:25000,color:'#7b2cff'},
+{id:'PRO3',cat:'pro',name:'PRO Cluster 3',price:30000,color:'#7b2cff'},
+{id:'PRO4',cat:'pro',name:'PRO Cluster 4',price:35000,color:'#7b2cff'},
+{id:'PRO5',cat:'pro',name:'PRO Cluster 5',price:40000,color:'#7b2cff'},
+{id:'PRO6',cat:'pro',name:'PRO Cluster 6',price:50000,color:'#7b2cff'},
+{id:'PRO7',cat:'pro',name:'PRO Cluster 7',price:60000,color:'#7b2cff'},
+{id:'PRO8',cat:'pro',name:'PRO Cluster 8',price:75000,color:'#7b2cff'},
+{id:'PRO9',cat:'pro',name:'PRO Cluster 9',price:90000,color:'#7b2cff'},
+{id:'PRO10',cat:'pro',name:'PRO Cluster 10',price:100000,color:'#7b2cff'},
+{id:'PRO11',cat:'pro',name:'PRO Cluster 11',price:120000,color:'#7b2cff'},
+{id:'PRO12',cat:'pro',name:'PRO Cluster 12',price:150000,color:'#7b2cff'},
+{id:'ELITE1',cat:'elite',name:'ELITE Server 1',price:180000,color:'#ff6a00'},
+{id:'ELITE2',cat:'elite',name:'ELITE Server 2',price:200000,color:'#ff6a00'},
+{id:'ELITE3',cat:'elite',name:'ELITE Server 3',price:250000,color:'#ff6a00'},
+{id:'ELITE4',cat:'elite',name:'ELITE Server 4',price:300000,color:'#ff6a00'},
+{id:'ELITE5',cat:'elite',name:'ELITE Server 5',price:350000,color:'#ff6a00'},
+{id:'ELITE6',cat:'elite',name:'ELITE Server 6',price:400000,color:'#ff6a00'},
+{id:'ELITE7',cat:'elite',name:'ELITE Server 7',price:450000,color:'#ff6a00'},
+{id:'ELITE8',cat:'elite',name:'ELITE Server 8',price:500000,color:'#ff6a00'},
+{id:'ELITE9',cat:'elite',name:'ELITE Server 9',price:600000,color:'#ff6a00'},
+{id:'ELITE10',cat:'elite',name:'ELITE Server 10',price:700000,color:'#ff6a00'},
+{id:'ELITE11',cat:'elite',name:'ELITE Server 11',price:800000,color:'#ff6a00'},
+{id:'ELITE12',cat:'elite',name:'ELITE Server 12',price:1000000,color:'#ff6a00'},
+{id:'VIP1',cat:'vip',name:'VIP1 KING',price:1000,color:'gold',vip:true},
+{id:'VIP2',cat:'vip',name:'VIP2 EMPEROR',price:2500,color:'gold',vip:true},
+{id:'VIP3',cat:'vip',name:'VIP3 LEGEND',price:5000,color:'gold',vip:true},
+{id:'VIP4',cat:'vip',name:'VIP4 TITAN',price:10000,color:'gold',vip:true},
+{id:'VIP5',cat:'vip',name:'VIP5 SUPREME',price:20000,color:'gold',vip:true},
+{id:'VIP6',cat:'vip',name:'VIP6 ULTIMATE',price:50000,color:'gold',vip:true},
+];
+function renderMach(){let h='';machines.forEach(m=>{
+let border=m.vip?'2px solid gold':'2px solid '+m.color;
+let badgeBg=m.vip?'gold':'#111f3d';let badgeColor=m.vip?'#000':'#fff';
+let badgeText=m.vip?m.id+' 👑 UNLOCKED':m.id;
+h+=`<div class="mc" data-cat="${m.cat}"><div class="mi"><span class="bd" style="background:${m.color};color:${m.color==='gold'?'#000':'#fff'}">${badgeText}</span><img src="https://i.ibb.co/JjzPSSsV/Sky-machine.jpg" style="width:100px;height:90px;object-fit:cover;border-radius:10px;border:${border}"></div><div class="in"><b style="color:${m.color}">${m.name}</b><br>Price: ${m.price.toLocaleString()} UGX<br>Type: ${m.vip?'Premium Investment':'AI Server Rental'}<br>Duration: 30 Days<br><span style="color:#2eff8a">✅ Available - No invite needed</span><br><button class="bs" style="background:${m.color};color:${m.color==='gold'?'#000':'#fff'}" onclick="invest('${m.id}',${m.price})">Buy / Invest</button></div></div>`;
+});document.getElementById('machList').innerHTML=h;
+}
+let user=JSON.parse(localStorage.getItem('sky_user')||'null');let balance=parseInt(localStorage.getItem('sky_bal')||'0');
+function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('p-'+p).classList.add('active');if(document.getElementById('balW'))document.getElementById('balW').innerText=balance.toLocaleString()+' UGX';if(document.getElementById('balHome'))document.getElementById('balHome').innerText=balance.toLocaleString()+' UGX';}
+function showLogin(){document.getElementById('loginBox').style.display='block';}
+function register(){let n=document.getElementById('regName').value,p=document.getElementById('regPhone').value,e=document.getElementById('regEmail').value,pw=document.getElementById('regPass').value,pw2=document.getElementById('regPass2').value;if(!n||!p||!e||!pw)return alert('Fill Name, Phone, Email, Password, Confirm');if(pw!==pw2)return alert('Password confirm not match');user={name:n,phone:p,email:e,password:pw};localStorage.setItem('sky_user',JSON.stringify(user));afterAuth();}
+function login(){let ph=document.getElementById('logPhone').value,pw=document.getElementById('logPass').value;if(!user||user.phone!==ph||user.password!==pw)return alert('Wrong phone or password');afterAuth();}
+function afterAuth(){document.getElementById('uName').innerText=user.name;document.getElementById('uPhone').innerText=user.phone+' | '+user.email;document.getElementById('setName').value=user.name;document.getElementById('setPhone').value=user.phone;document.getElementById('setEmail').value=user.email;showPage('home');}
+function saveSettings(){let n=document.getElementById('setName').value,e=document.getElementById('setEmail').value,ph=document.getElementById('setPhone').value,pw=document.getElementById('setPass').value;if(n)user.name=n;if(e)user.email=e;if(ph)user.phone=ph;if(pw)user.password=pw;localStorage.setItem('sky_user',JSON.stringify(user));afterAuth();alert('Profile upgraded');}
+function filterMach(c,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');document.querySelectorAll('.mc').forEach(card=>{card.style.display=(c==='all'||card.dataset.cat===c)?'flex':'none';});}
+function invest(name,amount){balance+=amount;localStorage.setItem('sky_bal',balance);document.getElementById('balHome').innerText=balance.toLocaleString()+' UGX';alert('Invested '+amount.toLocaleString()+' in '+name+' - 30 days rental - Will be used in company. No guaranteed daily profit.');}
+function doDeposit(){let a=parseInt(document.getElementById('depAmount').value||'0');if(a<1000)return alert('Min 1000');balance+=a;localStorage.setItem('sky_bal',balance);alert('Deposit '+a+' received');showPage('home');}
+function doWithdraw(){let a=parseInt(document.getElementById('withAmount').value||'0');if(a>balance)return alert('Insufficient');balance-=a;localStorage.setItem('sky_bal',balance);alert('Cash out '+a+' to '+document.getElementById('withPhone').value+' - processing 24h');showPage('home');}
+function logout(){localStorage.clear();location.reload();}
+renderMach();if(user){document.getElementById('p-auth').classList.remove('active');document.getElementById('p-home').classList.add('active');document.getElementById('uName').innerText=user.name;document.getElementById('uPhone').innerText=user.phone+' | '+user.email;document.getElementById('balHome').innerText=balance.toLocaleString()+' UGX';}
+</script>
+<div class="bottom"><div onclick="showPage('home')">🏠<br>Home</div><div onclick="showPage('machines')">🤖<br>Machines<br>36</div><div onclick="showPage('deposit')">💰<br>Deposit</div><div onclick="showPage('withdraw')">💸<br>Cash Out</div><div onclick="showPage('settings')">⚙️<br>Settings</div><div onclick="showPage('rules')">📜<br>Rules</div></div>
 </body></html>
