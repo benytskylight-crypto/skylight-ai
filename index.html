@@ -1,48 +1,43 @@
 <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SKYLIGHT AI - 36 MACHINES UNLOCKED</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#070e1f;color:#fff;padding-bottom:95px}
-.hd{padding:12px 16px;display:flex;justify-content:space-between;background:#070e1f;position:sticky;top:0;z-index:10;border-bottom:1px solid #1e355f}
-.logo{font-weight:900;color:#00e5ff}.card{background:#111f3d;border-radius:18px;padding:16px;margin:12px;border:1px solid #1e355f}
-.sub{color:#8aa0c6;font-size:12px}.input{width:100%;padding:13px;background:#070e1f;border:1px solid #1e355f;border-radius:12px;color:#fff;margin:6px 0}
-.btn{width:100%;padding:14px;border-radius:14px;border:none;font-weight:800;cursor:pointer;margin-top:8px}.blue{background:linear-gradient(90deg,#00d4ff,#7b2cff);color:#fff}.green{background:#2eff8a;color:#000}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#0e1d38;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #1e355f;z-index:99}
-.bottom div{text-align:center;font-size:10px;color:#8aa0c6;flex:1;cursor:pointer}.page{display:none}.page.active{display:block}
-.mc{border-radius:14px;display:flex;margin:8px 12px;overflow:hidden;border:1px solid #1e355f;background:#111f3d}
-.mi{width:125px;display:flex;align-items:center;justify-content:center;min-height:115px;background:#000;position:relative;flex-shrink:0}
+<title>SKYLIGHT AI</title>
+<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#070e1f;color:#fff;padding-bottom:90px}
+.mc{border-radius:14px;display:flex;margin:9px 12px;overflow:hidden;border:1px solid #1e355f;background:#111f3d}
+.mi{width:130px;display:flex;align-items:center;justify-content:center;min-height:115px;background:#000;position:relative}
 .bd{position:absolute;top:6px;left:6px;padding:3px 8px;border-radius:20px;font-weight:900;font-size:10px}
-.in{padding:9px 10px;flex:1;line-height:1.4;font-size:12px}.bs{border:none;padding:7px 12px;border-radius:8px;font-weight:800;cursor:pointer;margin-top:4px}
+.in{padding:9px 10px;flex:1;line-height:1.4;font-size:12px}.bs{border:none;padding:7px 12px;border-radius:8px;font-weight:800;cursor:pointer}
+.tab{padding:6px 11px;color:#8aa0c6;font-weight:700;font-size:12px;border-radius:20px;background:#111f3d;border:1px solid #1e355f;margin-right:5px;cursor:pointer}
+.tab.active{color:#000;background:gold}
 </style></head><body>
-<div class="hd"><div class="logo">SKYLIGHT AI</div><div style="color:#2eff8a;font-size:10px">● 36 MACHINES • ALL UNLOCKED</div></div>
-
-<div id="p-auth" class="page active">
-<div class="card"><h3>Join - Number, Password, Name, Email</h3>
-<input id="regName" class="input" placeholder="Full Name">
-<input id="regPhone" class="input" placeholder="Phone Number">
-<input id="regEmail" class="input" placeholder="Email">
-<input id="regPass" class="input" type="password" placeholder="Password">
-<input id="regPass2" class="input" type="password" placeholder="Confirm Password">
-<button class="btn blue" onclick="register()">Create Account</button>
-<div class="sub" style="margin-top:8px">Have account? <span style="color:#00e5ff" onclick="document.getElementById('loginBox').style.display='block'">Login</span></div></div>
-<div id="loginBox" class="card" style="display:none"><h3>Login</h3>
-<input id="logPhone" class="input" placeholder="Phone Number">
-<input id="logPass" class="input" type="password" placeholder="Password">
-<button class="btn blue" onclick="login()">Login</button></div>
+<div style="display:flex;gap:5px;padding:10px 12px;overflow-x:auto">
+<span class="tab active" onclick="filterMach('all',this)">All 36</span>
+<span class="tab" onclick="filterMach('vip',this)">VIP 6</span>
+<span class="tab" onclick="filterMach('basic',this)">Basic</span>
+<span class="tab" onclick="filterMach('pro',this)">Pro</span>
+<span class="tab" onclick="filterMach('elite',this)">Elite</span>
 </div>
-
-<div id="p-home" class="page">
-<div class="card"><div style="display:flex;justify-content:space-between"><div><div class="sub">Welcome</div><b id="uName">User</b><br><span class="sub" id="uPhone"></span></div><div style="text-align:right"><div class="sub">Investment</div><b id="balHome" style="font-size:19px;color:gold">0 UGX</b></div></div>
-<button class="btn green" onclick="showPage('deposit')">Deposit Cash In</button>
-<button class="btn blue" onclick="showPage('withdraw')">Withdraw / Cash Out</button>
-</div>
-<div class="card" style="border:1px solid gold"><h3>👑 4 Founders</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px">
-<div style="background:#0d1a33;padding:10px;border-radius:12px;text-align:center;border:1px solid gold">Founder 1 CEO<br><span class="sub">Edit Name</span></div>
-<div style="background:#0d1a33;padding:10px;border-radius:12px;text-align:center;border:1px solid gold">Founder 2 CTO<br><span class="sub">Edit Name</span></div>
-<div style="background:#0d1a33;padding:10px;border-radius:12px;text-align:center;border:1px solid #2a3a5f">Founder 3 COO<br><span class="sub">Edit Name</span></div>
-<div style="background:#0d1a33;padding:10px;border-radius:12px;text-align:center;border:1px solid #2a3a5f">Founder 4 CFO<br><span class="sub">Edit Name</span></div>
-</div></div>
-</div>
-
-<div id="p-machines" class="page">
-<!-- 36 HARD CODED - YOU WILL SEE ALL -->
-<div class="mc"><div class="mi"><span class="bd" style="background:#00e5ff;color:#000">BASIC1</span
+<div id="machList"></div>
+<script>
+const machines=[
+{id:'VIP1',cat:'vip',name:'VIP1 KING',price:1000},{id:'VIP2',cat:'vip',name:'VIP2 EMPEROR',price:2500},{id:'VIP3',cat:'vip',name:'VIP3 LEGEND',price:5000},
+{id:'VIP4',cat:'vip',name:'VIP4 TITAN',price:10000},{id:'VIP5',cat:'vip',name:'VIP5 SUPREME',price:20000},{id:'VIP6',cat:'vip',name:'VIP6 ULTIMATE',price:50000},
+{id:'BASIC1',cat:'basic',name:'BASIC AI Node 1',price:2000},{id:'BASIC2',cat:'basic',name:'BASIC Node 2',price:5000},{id:'BASIC3',cat:'basic',name:'BASIC Node 3',price:8000},
+{id:'BASIC4',cat:'basic',name:'BASIC Node 4',price:10000},{id:'BASIC5',cat:'basic',name:'BASIC Node 5',price:12000},{id:'BASIC6',cat:'basic',name:'BASIC Node 6',price:15000},
+{id:'PRO1',cat:'pro',name:'PRO Cluster 1',price:20000},{id:'PRO2',cat:'pro',name:'PRO Cluster 2',price:25000},{id:'PRO3',cat:'pro',name:'PRO Cluster 3',price:30000},
+{id:'PRO4',cat:'pro',name:'PRO Cluster 4',price:35000},{id:'PRO5',cat:'pro',name:'PRO Cluster 5',price:40000},{id:'PRO6',cat:'pro',name:'PRO Cluster 6',price:50000},
+{id:'PRO7',cat:'pro',name:'PRO Cluster 7',price:60000},{id:'PRO8',cat:'pro',name:'PRO Cluster 8',price:75000},{id:'PRO9',cat:'pro',name:'PRO Cluster 9',price:90000},
+{id:'PRO10',cat:'pro',name:'PRO Cluster 10',price:100000},{id:'PRO11',cat:'pro',name:'PRO Cluster 11',price:120000},{id:'PRO12',cat:'pro',name:'PRO Cluster 12',price:150000},
+{id:'ELITE1',cat:'elite',name:'ELITE Server 1',price:180000},{id:'ELITE2',cat:'elite',name:'ELITE Server 2',price:200000},{id:'ELITE3',cat:'elite',name:'ELITE Server 3',price:250000},
+{id:'ELITE4',cat:'elite',name:'ELITE Server 4',price:300000},{id:'ELITE5',cat:'elite',name:'ELITE Server 5',price:350000},{id:'ELITE6',cat:'elite',name:'ELITE Server 6',price:400000},
+{id:'ELITE7',cat:'elite',name:'ELITE Server 7',price:450000},{id:'ELITE8',cat:'elite',name:'ELITE Server 8',price:500000},{id:'ELITE9',cat:'elite',name:'ELITE Server 9',price:600000},
+{id:'ELITE10',cat:'elite',name:'ELITE Server 10',price:700000},{id:'ELITE11',cat:'elite',name:'ELITE Server 11',price:800000},{id:'ELITE12',cat:'elite',name:'ELITE Server 12',price:1000000},
+];
+function render(){let h='';machines.forEach(m=>{
+let isVip=m.cat==='vip';
+let col=isVip?'gold':(m.cat==='basic'?'#00e5ff':(m.cat==='pro'?'#7b2cff':'#ff6a00'));
+h+=`<div class="mc" data-cat="${m.cat}"><div class="mi"><span class="bd" style="background:${col};color:${isVip?'#000':'#fff'}">${m.id} ${isVip?'👑':''}</span><img src="https://i.ibb.co/JjzPSSsV/Sky-machine.jpg" style="width:100px;height:90px;object-fit:cover;border-radius:10px;border:2px solid ${col}"></div><div class="in"><b style="color:${col}">${m.name}</b><br>Price: ${m.price.toLocaleString()} UGX<br>Type: Premium AI Server Rental<br>Duration: 30 Days Unlimited Use<br><span style="color:#2eff8a">✅ Available - No invite needed</span><br><button class="bs" style="background:${col};color:${isVip?'#000':'#fff'}">Buy</button></div></div>`;
+});document.getElementById('machList').innerHTML=h;
+}
+function filterMach(c,el){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');document.querySelectorAll('.mc').forEach(card=>{card.style.display=(c==='all'||card.dataset.cat===c)?'flex':'none';});}
+render();
+</script>
+</body></html>
