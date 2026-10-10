@@ -4,87 +4,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Skylight AI - Admin</title>
 <style>
-body{margin:0;font-family:Arial;background:#0f0f23;color:white;padding:15px;min-height:100vh}
+body{margin:0;font-family:Arial;background:#0f0f23;color:white;padding:15px}
 .login{max-width:320px;margin:80px auto;background:white;color:black;padding:25px;border-radius:20px;text-align:center}
 .login input{width:100%;padding:14px;margin:10px 0;border-radius:10px;border:1px solid #ccc}
 .login button{width:100%;padding:14px;background:#6c5ce7;color:white;border:none;border-radius:10px;font-weight:bold}
 .card{background:white;color:black;border-radius:12px;padding:12px;margin:10px 0}
-.badge{padding:4px 8px;border-radius:6px;font-size:12px;color:white}
-.pending{background:orange}.approved{background:green}.rejected{background:red}
-button.action{padding:6px 12px;border:none;border-radius:6px;margin:3px;color:white;font-weight:bold}
-.approve{background:green}.reject{background:red}
-#adminPanel{display:none}
 </style>
 </head>
 <body>
 
 <div id="loginPanel" class="login">
 <h2>SKYLIGHT AI</h2>
-<p>Admin Login</p>
-<input id="pass" type="password" placeholder="Enter Password">
+<input id="pass" type="password" placeholder="Password">
 <button onclick="login()">Login</button>
 <p id="err" style="color:red"></p>
 </div>
 
-<div id="adminPanel">
-<h2 style="text-align:center">SKYLIGHT AI - DEPOSITS</h2>
-<p style="text-align:center">
-<button onclick="load()" style="background:#6c5ce7;padding:10px 15px;border-radius:8px;border:none;color:white">🔄 Refresh</button>
-<button onclick="logout()" style="background:#333;padding:10px 15px;border-radius:8px;border:none;color:white">Logout</button>
-</p>
+<div id="adminPanel" style="display:none">
+<h2 style="text-align:center">DEPOSITS</h2>
+<p style="text-align:center"><button onclick="location.reload()" style="padding:10px;background:#6c5ce7;color:white;border:none;border-radius:8px">🔄 Refresh</button>
+<button onclick="localStorage.clear();location.reload()" style="padding:10px;background:#333;color:white;border:none;border-radius:8px">Logout</button></p>
 <div id="list">Loading...</div>
 </div>
 
 <script>
-const API = "https://script.google.com/macros/s/AKfycbzcSwf8wl7tSIvX1sxPZwjwbTHaN8tiaUmVa49gTu0IDZcM0ge9oOtnwsIpCJkgGzXELw/exec";
-const MY_PASSWORD = "SKYLIGHT2026"; // <-- CHANGE THIS
-
+const SHEET_CSV = "https://docs.google.com/spreadsheets/d/1yBmiGJg1BF6qfnas1EUQvXAdzU-nuwCBzORmYdt-vpE/gviz/tq?tqx=out:csv";
 function login(){
- let p = document.getElementById("pass").value;
- if(p === MY_PASSWORD){
-   localStorage.setItem("skylight_admin","yes");
-   showAdmin();
- } else {
-   document.getElementById("err").innerHTML="❌ Wrong password";
- }
+ if(document.getElementById("pass").value==="SKYLIGHT2026"){
+  localStorage.setItem("skylight_admin","yes");
+  showAdmin();
+ } else {document.getElementById("err").innerText="Wrong password"}
 }
-
 function showAdmin(){
  document.getElementById("loginPanel").style.display="none";
  document.getElementById("adminPanel").style.display="block";
  load();
 }
-
-function logout(){
- localStorage.removeItem("skylight_admin");
- location.reload();
-}
-
-if(localStorage.getItem("skylight_admin")==="yes"){showAdmin()}
+if(localStorage.getItem("skylight_admin")==="yes") showAdmin();
 
 function load(){
- document.getElementById("list").innerHTML="Loading...";
- fetch(API).then(r=>r.json()).then(data=>{
-  if(!data || data.length==0){document.getElementById("list").innerHTML="<p style='text-align:center'>No deposits yet</p>";return}
+ fetch(SHEET_CSV).then(r=>r.text()).then(text=>{
+  let rows = text.split("\n").slice(1).reverse();
+  if(rows.length==0||text.length<20){document.getElementById("list").innerHTML="No deposits yet. Check Google Sheet has data.";return}
   let html="";
-  let total = 0;
-  data.forEach(d=>{
-    if(d.status=="Approved") total+=parseInt(d.amount||0);
-    let cls = d.status=="Approved"?"approved":d.status=="Rejected"?"rejected":"pending";
-    html+=`<div class="card">
-    <b>UGX ${d.amount}</b> - ${d.phone} <span class="badge ${cls}">${d.status}</span><br>
-    <small>${d.network} | Txn: ${d.txn}<br>${new Date(d.time).toLocaleString()}</small><br>
-    <button class="action approve" onclick="updateStatus(${d.row},'Approved')">Approve</button>
-    <button class="action reject" onclick="updateStatus(${d.row},'Rejected')">Reject</button>
-    </div>`;
+  rows.forEach(r=>{
+   if(!r.trim())return;
+   let cols = r.split(",");
+   html+=`<div class="card">${r}</div>`;
   });
-  document.getElementById("list").innerHTML=`<p style="text-align:center">Total Approved: <b>UGX ${total}</b> | Total: ${data.length}</p>`+html;
- });
-}
-
-function updateStatus(row,status){
- fetch(API,{method:"POST",mode:"no-cors",body:JSON.stringify({action:"updateStatus",row:row,status:status})})
-.then(()=>{load()});
+  document.getElementById("list").innerHTML=html;
+ }).catch(()=>{document.getElementById("list").innerHTML="Failed to load. Make Sheet public: In Google Sheet click Share > Anyone with link > Viewer";});
 }
 </script>
 </body>
