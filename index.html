@@ -1,60 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Skylight AI - Admin</title>
+<title>SKYLIGHT AI COMPANY</title>
 <style>
-body{margin:0;font-family:Arial;background:#0f0f23;color:white;padding:15px}
-.login{max-width:320px;margin:80px auto;background:white;color:black;padding:25px;border-radius:20px;text-align:center}
-.login input{width:100%;padding:14px;margin:10px 0;border-radius:10px;border:1px solid #ccc}
-.login button{width:100%;padding:14px;background:#6c5ce7;color:white;border:none;border-radius:10px;font-weight:bold}
-.card{background:white;color:black;border-radius:12px;padding:12px;margin:10px 0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#080e1e;color:white;font-family:Arial}
+.top{display:flex;justify-content:space-between;padding:12px 15px;background:#0a1430}
+.top b{color:#2ecfff;font-size:15px}
+.top span{color:#3dd68c;font-size:12px}
+.tabs{display:flex;justify-content:space-around;padding:12px;background:#0a1430;border-bottom:1px solid #1a2a50}
+.tabs div{text-align:center;color:#8aa0c8;font-size:14px;font-weight:bold}
+.tabs .active{color:#2ecfff;border-bottom:2px solid #2ecfff;padding-bottom:5px}
+.card{display:flex;background:#132040;margin:10px;border-radius:15px;padding:12px;border:1px solid #1e345f}
+.card img{width:85px;height:85px;border-radius:10px;border:2px solid #2ecfff;background:#000}
+.info{margin-left:12px;flex:1}
+.info h4{color:#2ecfff;font-size:14px}
+.info p{font-size:13px;margin:4px 0;color:#cbd6ee}
+.btns{display:flex;gap:8px;margin-top:6px}
+.buy{background:#2ecfff;color:white;border:none;padding:6px 14px;border-radius:8px;font-weight:bold}
+.recv{background:#1db954;color:white;border:none;padding:6px 14px;border-radius:8px;font-weight:bold}
+.nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#0a1430;padding:8px 0;border-top:1px solid #1a2a50}
+.nav div{text-align:center;font-size:11px;color:#8aa0c8}
+.nav div.active{color:#2ecfff}
+.badge{background:#2ecfff;color:#000;font-size:11px;padding:2px 7px;border-radius:6px;position:absolute;top:-5px;left:-5px;font-weight:bold}
+.imgbox{position:relative}
 </style>
 </head>
 <body>
 
-<div id="loginPanel" class="login">
-<h2>SKYLIGHT AI</h2>
-<input id="pass" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
-<p id="err" style="color:red"></p>
+<div class="top">
+<b>SKYLIGHT AI COMPANY</b>
+<span>● VIP 17% + INVITE LOCK</span>
 </div>
 
-<div id="adminPanel" style="display:none">
-<h2 style="text-align:center">DEPOSITS</h2>
-<p style="text-align:center"><button onclick="location.reload()" style="padding:10px;background:#6c5ce7;color:white;border:none;border-radius:8px">🔄 Refresh</button>
-<button onclick="localStorage.clear();location.reload()" style="padding:10px;background:#333;color:white;border:none;border-radius:8px">Logout</button></p>
-<div id="list">Loading...</div>
+<div class="tabs">
+<div>All<br>36</div>
+<div>A(6)</div>
+<div class="active">M(6)</div>
+<div>U/L/Y(18)</div>
+<div>VIP(6)<br>🔒</div>
+</div>
+
+<div id="list"></div>
+
+<div class="nav">
+<div class="active">🏠<br>Home</div>
+<div>📟<br>Machines</div>
+<div onclick="location.href='deposit.html'">💰<br>Wallet</div>
+<div>👥<br>Group</div>
+<div>📜<br>Rules</div>
+<div>⚙️<br>Set</div>
 </div>
 
 <script>
-const SHEET_CSV = "https://docs.google.com/spreadsheets/d/1yBmiGJg1BF6qfnas1EUQvXAdzU-nuwCBzORmYdt-vpE/gviz/tq?tqx=out:csv";
-function login(){
- if(document.getElementById("pass").value==="SKYLIGHT2026"){
-  localStorage.setItem("skylight_admin","yes");
-  showAdmin();
- } else {document.getElementById("err").innerText="Wrong password"}
-}
-function showAdmin(){
- document.getElementById("loginPanel").style.display="none";
- document.getElementById("adminPanel").style.display="block";
- load();
-}
-if(localStorage.getItem("skylight_admin")==="yes") showAdmin();
-
-function load(){
- fetch(SHEET_CSV).then(r=>r.text()).then(text=>{
-  let rows = text.split("\n").slice(1).reverse();
-  if(rows.length==0||text.length<20){document.getElementById("list").innerHTML="No deposits yet. Check Google Sheet has data.";return}
-  let html="";
-  rows.forEach(r=>{
-   if(!r.trim())return;
-   let cols = r.split(",");
-   html+=`<div class="card">${r}</div>`;
-  });
-  document.getElementById("list").innerHTML=html;
- }).catch(()=>{document.getElementById("list").innerHTML="Failed to load. Make Sheet public: In Google Sheet click Share > Anyone with link > Viewer";});
-}
+let machines=[
+{M:"M1",price:2000,daily:120,total:3600},
+{M:"M2",price:5000,daily:300,total:9000},
+{M:"M3",price:10000,daily:600,total:18000},
+{M:"M4",price:20000,daily:1200,total:36000},
+{M:"M5",price:40000,daily:2400,total:72000},
+{M:"M6",price:80000,daily:4800,total:144000},
+];
+let html="";
+machines.forEach(m=>{
+ html+=`
+ <div class="card">
+  <div class="imgbox"><div class="badge">${m.M}</div>
+  <img src="https://cdn-icons-png.flaticon.com/512/4712/4712009.png">
+  </div>
+  <div class="info">
+   <h4>${m.M} SKY 6% ❄️</h4>
+   <p>Price:${m.price.toLocaleString()} Daily:${m.daily.toLocaleString()} Total:${m.total.toLocaleString()}</p>
+   <div class="btns">
+    <button class="buy" onclick="location.href='deposit.html'">Buy</button>
+    <button class="recv">Receive</button>
+   </div>
+  </div>
+ </div>`;
+});
+document.getElementById("list").innerHTML=html;
 </script>
 </body>
 </html>
