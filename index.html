@@ -6,45 +6,51 @@
 <title>SKYLIGHT AI COMPANY</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#080e1e;color:white;font-family:Arial}
-.top{display:flex;justify-content:space-between;padding:12px 15px;background:#0a1430}
-.top b{color:#2ecfff;font-size:15px}
+body{background:#070d1f;color:white;font-family:Arial;padding-bottom:90px}
+.top{display:flex;justify-content:space-between;padding:14px;background:#0a1430}
+.top b{color:#2ecfff}
 .top span{color:#3dd68c;font-size:12px}
-.tabs{display:flex;justify-content:space-around;padding:12px;background:#0a1430;border-bottom:1px solid #1a2a50}
-.tabs div{text-align:center;color:#8aa0c8;font-size:14px;font-weight:bold}
-.tabs .active{color:#2ecfff;border-bottom:2px solid #2ecfff;padding-bottom:5px}
-.card{display:flex;background:#132040;margin:10px;border-radius:15px;padding:12px;border:1px solid #1e345f}
-.card img{width:85px;height:85px;border-radius:10px;border:2px solid #2ecfff;background:#000}
+.tabs{display:flex;justify-content:space-around;padding:10px;background:#0a1430;border-bottom:1px solid #1a2a50;position:sticky;top:0;z-index:10}
+.tabs div{color:#8aa0c8;font-size:13px;text-align:center;padding:6px;cursor:pointer}
+.tabs .active{color:#2ecfff;border-bottom:2px solid #2ecfff}
+.card{display:flex;margin:10px;border-radius:16px;padding:10px;border:1px solid #333}
+.card.M{background:#122040;border-color:#1ec8ff}
+.card.Y{background:#2a1010;border-color:#ff6a3d}
+.card.U{background:#251040;border-color:#b86bff}
+.card.A{background:#102a1a;border-color:#3dd68c}
+.card.VIP{background:#2a2000;border-color:#ffcc00}
+.imgbox{position:relative;width:90px;height:90px;flex-shrink:0}
+.imgbox img{width:100%;height:100%;border-radius:12px;background:#000;object-fit:cover;border:2px solid currentColor}
+.badge{position:absolute;top:-6px;left:-6px;background:#2ecfff;color:#000;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:bold}
+.card.Y .badge{background:#ff6a3d;color:white}
+.card.U .badge{background:#b86bff;color:white}
 .info{margin-left:12px;flex:1}
-.info h4{color:#2ecfff;font-size:14px}
-.info p{font-size:13px;margin:4px 0;color:#cbd6ee}
-.btns{display:flex;gap:8px;margin-top:6px}
-.buy{background:#2ecfff;color:white;border:none;padding:6px 14px;border-radius:8px;font-weight:bold}
-.recv{background:#1db954;color:white;border:none;padding:6px 14px;border-radius:8px;font-weight:bold}
+.info h4{font-size:14px}
+.card.M h4{color:#2ecfff}
+.card.Y h4{color:#ff8a65}
+.card.U h4{color:#d8a0ff}
+.info p{font-size:12px;margin:5px 0;color:#cbd6ee}
+.btns{display:flex;gap:8px}
+.buy{border:none;padding:6px 14px;border-radius:8px;font-weight:bold;color:white}
+.card.M .buy{background:#2ecfff}
+.card.Y .buy{background:#ff6a3d}
+.card.U .buy{background:#c084ff}
+.recv{background:#15b85f;color:white;border:none;padding:6px 14px;border-radius:8px;font-weight:bold}
 .nav{position:fixed;bottom:0;left:0;right:0;display:flex;justify-content:space-around;background:#0a1430;padding:8px 0;border-top:1px solid #1a2a50}
 .nav div{text-align:center;font-size:11px;color:#8aa0c8}
-.nav div.active{color:#2ecfff}
-.badge{background:#2ecfff;color:#000;font-size:11px;padding:2px 7px;border-radius:6px;position:absolute;top:-5px;left:-5px;font-weight:bold}
-.imgbox{position:relative}
+.nav .active{color:#2ecfff}
 </style>
 </head>
 <body>
-
-<div class="top">
-<b>SKYLIGHT AI COMPANY</b>
-<span>● VIP 17% + INVITE LOCK</span>
-</div>
-
+<div class="top"><b>SKYLIGHT AI COMPANY</b><span>● VIP 17% + INVITE LOCK</span></div>
 <div class="tabs">
-<div>All<br>36</div>
-<div>A(6)</div>
-<div class="active">M(6)</div>
-<div>U/L/Y(18)</div>
-<div>VIP(6)<br>🔒</div>
+<div class="active" onclick="filter('ALL',this)">All<br>36</div>
+<div onclick="filter('A',this)">A(6)</div>
+<div onclick="filter('M',this)">M(6)</div>
+<div onclick="filter('U',this)">U/L/Y(18)</div>
+<div onclick="filter('VIP',this)">VIP(6) 🔒</div>
 </div>
-
 <div id="list"></div>
-
 <div class="nav">
 <div class="active">🏠<br>Home</div>
 <div>📟<br>Machines</div>
@@ -53,34 +59,62 @@ body{background:#080e1e;color:white;font-family:Arial}
 <div>📜<br>Rules</div>
 <div>⚙️<br>Set</div>
 </div>
-
 <script>
-let machines=[
-{M:"M1",price:2000,daily:120,total:3600},
-{M:"M2",price:5000,daily:300,total:9000},
-{M:"M3",price:10000,daily:600,total:18000},
-{M:"M4",price:20000,daily:1200,total:36000},
-{M:"M5",price:40000,daily:2400,total:72000},
-{M:"M6",price:80000,daily:4800,total:144000},
+let data=[
+{M:"M1",T:"M",P:2000,D:120,Tot:3600,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"M2",T:"M",P:5000,D:300,Tot:9000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"M3",T:"M",P:10000,D:600,Tot:18000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"M4",T:"M",P:20000,D:1200,Tot:36000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"M5",T:"M",P:40000,D:2400,Tot:72000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"M6",T:"M",P:80000,D:4800,Tot:144000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"Y1",T:"Y",P:2500,D:150,Tot:4500,img:"https://i.imgur.com/3ZQ3ZQ3.png"},
+{M:"Y2",T:"Y",P:7000,D:420,Tot:12600,img:"https://i.imgur.com/3ZQ3ZQ3.png"},
+{M:"Y3",T:"Y",P:18000,D:1080,Tot:32400,img:"https://i.imgur.com/3ZQ3ZQ3.png"},
+{M:"Y4",T:"Y",P:35000,D:2100,Tot:63000,img:"https://i.imgur.com/3ZQ3ZQ3.png"},
+{M:"Y5",T:"Y",P:70000,D:4200,Tot:126000,img:"https://i.imgur.com/3ZQ3ZQ3.png"},
+{M:"Y6",T:"Y",P:150000,D:9000,Tot:270000,img:"https://i.imgur.com/3ZQ3ZQ3.png"},
+{M:"U1",T:"U",P:4000,D:240,Tot:7200,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"U2",T:"U",P:8000,D:480,Tot:14400,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"U3",T:"U",P:15000,D:900,Tot:27000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"U4",T:"U",P:30000,D:1800,Tot:54000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"U5",T:"U",P:60000,D:3600,Tot:108000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"U6",T:"U",P:120000,D:7200,Tot:216000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"L1",T:"U",P:5000,D:300,Tot:9000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"L2",T:"U",P:10000,D:600,Tot:18000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"L3",T:"U",P:20000,D:1200,Tot:36000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"L4",T:"U",P:40000,D:2400,Tot:72000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"L5",T:"U",P:80000,D:4800,Tot:144000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"L6",T:"U",P:160000,D:9600,Tot:288000,img:"https://i.imgur.com/L3f0L3f.png"},
+{M:"A1",T:"A",P:3000,D:180,Tot:5400,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"A2",T:"A",P:6000,D:360,Tot:10800,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"A3",T:"A",P:12000,D:720,Tot:21600,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"A4",T:"A",P:25000,D:1500,Tot:45000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"A5",T:"A",P:50000,D:3000,Tot:90000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"A6",T:"A",P:100000,D:6000,Tot:180000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"VIP1",T:"VIP",P:200000,D:15000,Tot:450000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"VIP2",T:"VIP",P:400000,D:32000,Tot:960000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"VIP3",T:"VIP",P:800000,D:68000,Tot:2040000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"VIP4",T:"VIP",P:1500000,D:135000,Tot:4050000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"VIP5",T:"VIP",P:3000000,D:285000,Tot:8550000,img:"https://i.imgur.com/8QJ4sQc.png"},
+{M:"VIP6",T:"VIP",P:5000000,D:500000,Tot:15000000,img:"https://i.imgur.com/8QJ4sQc.png"},
 ];
-let html="";
-machines.forEach(m=>{
- html+=`
- <div class="card">
-  <div class="imgbox"><div class="badge">${m.M}</div>
-  <img src="https://cdn-icons-png.flaticon.com/512/4712/4712009.png">
-  </div>
-  <div class="info">
-   <h4>${m.M} SKY 6% ❄️</h4>
-   <p>Price:${m.price.toLocaleString()} Daily:${m.daily.toLocaleString()} Total:${m.total.toLocaleString()}</p>
-   <div class="btns">
-    <button class="buy" onclick="location.href='deposit.html'">Buy</button>
-    <button class="recv">Receive</button>
-   </div>
-  </div>
- </div>`;
-});
-document.getElementById("list").innerHTML=html;
+
+function render(arr){
+ let h="";
+ arr.forEach(x=>{
+  let icon = x.T=='M'?"❄️":x.T=='Y'?"🔥":x.T=='U'?"🔮":"💎";
+  h+=`<div class="card ${x.T}"><div class="imgbox"><div class="badge">${x.M}</div><img src="https://cdn-icons-png.flaticon.com/512/4712/4712009.png"></div><div class="info"><h4>${x.M} SKY 6% ${icon}</h4><p>Price:${x.P.toLocaleString()} Daily:${x.D.toLocaleString()} Total:${x.Tot.toLocaleString()}</p><div class="btns"><button class="buy" onclick="location.href='deposit.html?m=${x.M}&price=${x.P}'">Buy</button><button class="recv">Receive</button></div></div></div>`;
+ });
+ document.getElementById("list").innerHTML=h;
+}
+render(data);
+function filter(type,el){
+ document.querySelectorAll(".tabs div").forEach(d=>d.classList.remove("active"));
+ el.classList.add("active");
+ if(type=='ALL') render(data);
+ else if(type=='U') render(data.filter(x=>x.T=='Y'||x.T=='U'));
+ else render(data.filter(x=>x.T==type));
+}
 </script>
 </body>
 </html>
