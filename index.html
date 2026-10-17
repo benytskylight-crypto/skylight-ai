@@ -1,46 +1,64 @@
-<!DOCTYPE html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Skylight Crypto</title>
-<style>
-body{background:#0b0f1a;color:#fff;font-family:Arial;margin:0;padding:10px}
-.tabs{display:flex;gap:5px;margin:10px 0;overflow:auto}
-.tab{padding:8px 12px;background:#1a2332;border-radius:20px;cursor:pointer;white-space:nowrap}
-.tab.active{background:#7c3aed}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.card{background:#151e2f;border-radius:12px;padding:8px;text-align:center;border:1px solid #2a3a5a}
-.card img{width:100%;height:80px;object-fit:contain;background:#0f172a;border-radius:8px}
-.card.vip{border:1px solid gold;box-shadow:0 0 10px gold}
-.btn{width:100%;background:#7c3aed;color:#fff;border:none;padding:8px;border-radius:8px;margin-top:5px}
-</style></head><body>
-<h2 style="text-align:center">⚡ Skylight Mining</h2>
-<div class="tabs">
-<div class="tab active" onclick="show('all',this)">All (36)</div>
-<div class="tab" onclick="show('m',this)">M (6)</div>
-<div class="tab" onclick="show('y',this)">Y (6)</div>
-<div class="tab" onclick="show('u',this)">U/L/Y (18)</div>
-<div class="tab" onclick="show('vip',this)">VIP (6)</div>
+<!-- REPLACE ONLY THE DEPOSIT PAGE DIV with this inside your index.html -->
+<div id="p-deposit" class="page">
+<h3>💰 Real Deposit - USDT</h3>
+<div style="background:#151e2f;padding:15px;border-radius:12px">
+<div style="display:flex;gap:6px;margin-bottom:10px">
+<button id="net-trc" class="btn" style="background:#7c3aed" onclick="setNet('trc')">TRC20 (Low fee)</button>
+<button id="net-bep" class="btn" style="background:#1e293b" onclick="setNet('bep')">BEP20</button>
 </div>
-<div id="grid" class="grid"></div>
+
+<div style="text-align:center;background:#0b0f1a;padding:10px;border-radius:8px">
+<div style="font-size:12px;color:#94a3b8">Send only USDT on <b id="netName">TRC20</b> network</div>
+<img id="qr" src="" style="width:150px;height:150px;background:#fff;margin:10px;border-radius:8px">
+<div style="font-size:11px;word-break:break-all;background:#1e293b;padding:8px;border-radius:6px" id="addr">Loading...</div>
+<button class="btn" style="background:#334155;margin-top:8px" onclick="copyAddr()">Copy Address</button>
+</div>
+
+<div style="margin-top:12px">
+<input id="depAmtReal" class="input" type="number" placeholder="Amount you sent (e.g. 100)">
+<input id="txid" class="input" type="text" placeholder="Paste TXID / Transaction Hash">
+<button class="btn" style="background:#22c55e" onclick="submitDeposit()">I Have Sent - Verify Deposit</button>
+<div style="font-size:11px;color:#94a3b8;margin-top:8px">Min deposit $10. Deposit credited after 1 confirmation. Contact support if delay.</div>
+</div>
+
+<div id="pendingList" style="margin-top:15px"></div>
+</div>
+</div>
+
 <script>
-const machines=[
-...Array(6).fill(0).map((_,i)=>({id:`M${i+1}`,cat:'m',name:`Miner M${i+1}`,img:'m.png.jpg',price:10+i*5})),
-...Array(6).fill(0).map((_,i)=>({id:`Y${i+1}`,cat:'y',name:`Tower Y${i+1}`,img:'y.png.jpg',price:20+i*5})),
-...Array(18).fill(0).map((_,i)=>({id:`U${i+1}`,cat:'u',name:`Unit U${i+1}`,img:'u.png.jpg',price:30+i*2})),
-...Array(6).fill(0).map((_,i)=>({id:`VIP${i+1}`,cat:'vip',name:`VIP Miner ${i+1}`,img:'png.vip.jpg',price:100+i*50})),
-];
-function render(list){
- document.getElementById('grid').innerHTML=list.map(m=>`
-  <div class="card ${m.cat=='vip'?'vip':''}">
-   <img src="${m.img}" onerror="this.src='https://via.placeholder.com/150?text=${m.id}'">
-   <div style="font-size:12px;margin:5px 0">${m.name} ${m.cat=='vip'?'👑':''}</div>
-   <div style="color:#fbbf24">$${m.price}</div>
-   <button class="btn" onclick="alert('Buy ${m.id} - $${m.price}')">Buy</button>
-  </div>`).join('');
+// === CONFIG - REPLACE WITH YOUR REAL WALLETS ===
+const WALLETS={
+ trc: "TYourTronUSDTAddressHere123456789", // <-- PASTE YOUR TRC20 USDT ADDRESS HERE
+ bep: "0xYourBscUSDTAddressHere123456789"  // <-- PASTE YOUR BEP20 USDT ADDRESS HERE
+};
+let currentNet='trc';
+function setNet(net){
+ currentNet=net;
+ document.getElementById('net-trc').style.background= net=='trc'?'#7c3aed':'#1e293b';
+ document.getElementById('net-bep').style.background= net=='bep'?'#7c3aed':'#1e293b';
+ document.getElementById('netName').innerText= net=='trc'?'TRC20':'BEP20';
+ let addr=WALLETS[net];
+ document.getElementById('addr').innerText=addr;
+ document.getElementById('qr').src=`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${addr}`;
 }
-function show(cat,el){
- document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); el.classList.add('active');
- if(cat=='all') render(machines); else render(machines.filter(x=>x.cat==cat));
+function copyAddr(){navigator.clipboard.writeText(document.getElementById('addr').innerText);alert('Address copied')}
+function submitDeposit(){
+ let amt=parseFloat(document.getElementById('depAmtReal').value);
+ let tx=document.getElementById('txid').value.trim();
+ if(!amt||amt<10) return alert('Min $10');
+ if(tx.length<10) return alert('Paste valid TXID');
+ let deposits=JSON.parse(localStorage.getItem('deposits')||'[]');
+ deposits.push({amt,tx,net:currentNet,time:new Date().toLocaleString(),status:'Pending'});
+ localStorage.setItem('deposits',JSON.stringify(deposits));
+ alert('Deposit submitted! Will be credited after verification. For instant auto verification, add Telegram bot.');
+ document.getElementById('depAmtReal').value=''; document.getElementById('txid').value='';
+ renderPending();
+ // OPTIONAL: Send to your Telegram for manual verification
+ // fetch(`https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage?chat_id=YOUR_ID&text=New Deposit $${amt} ${tx}`)
 }
-render(machines);
+function renderPending(){
+ let deposits=JSON.parse(localStorage.getItem('deposits')||'[]');
+ document.getElementById('pendingList').innerHTML= deposits.length?'<h4>History</h4>'+deposits.map(d=>`<div class="mini"><div>$${d.amt} <span style="font-size:10px">${d.net.toUpperCase()} ${d.status}</span></div><div style="font-size:10px">${d.time}</div></div>`).join(''):'';
+}
+setNet('trc'); renderPending();
 </script>
-</body></html>
